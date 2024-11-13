@@ -7,8 +7,6 @@ void createNote() {
     notes.add(new Note);
 }
 
-void prepareNote() {
-}
-
-void storage() {
+void storage(String fileName, int numTabs) {
+    String[] noteContent = loadStrings(fileName);
 }
