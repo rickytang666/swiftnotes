@@ -8,7 +8,7 @@
 */
 
 // Importing Packages
-
+import g4p_controls.*;
 
 // Global Variables/Contants
 
@@ -20,7 +20,8 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
 
 void setup()
 {
-    
+    size(1000, 700);
+    createGUI();
 }
 
 
