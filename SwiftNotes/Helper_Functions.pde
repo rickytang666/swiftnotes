@@ -1,5 +1,5 @@
 
-int countWordNum()
+int countWordNum(String input)
 {
-    //Empty for now
+    String[] words = splitTokens(input, " ,.!?;:");
 }
