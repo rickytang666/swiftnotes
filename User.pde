@@ -1,3 +1,5 @@
+// This file is for the user class
+
 class User {
     int goldCoins;
     ArrayList<Note> notes;
