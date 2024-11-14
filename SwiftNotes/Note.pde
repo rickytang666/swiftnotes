@@ -5,7 +5,7 @@ class Note
     String title;
     String createdDate;
     String text;
-    int numWords;
+    int wordNum;
 
 
 
@@ -25,5 +25,12 @@ class Note
     void saveNote()
     {
         // Empty for now
+    }
+
+
+    
+    void updateWordNum()
+    {
+        this.wordNum = countWordNum(this.text);
     }
 }
