@@ -17,14 +17,16 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
   '%', '^', '~', '`', '+', '=', '<', '>', '\n', '\t'};
 
 
-String defaultFilePath = "SaveNotes.txt";
-PrintWriter writer = createWriter(defaultFilePath);
+int goldCoins;
+ArrayList<Note> notes = new ArrayList<Note>();
 
 
 void setup()
 {
     size(1000, 700);
     createGUI();
+
+    
 }
 
 
