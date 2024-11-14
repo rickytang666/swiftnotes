@@ -1,16 +1,14 @@
-// This file is for the user class
+// This file is for the user data and functions
 
-class User 
-{
-    int goldCoins;
-    ArrayList<Note> notes;
+int goldCoins;
+ArrayList<Note> notes;
 
-    void createNote() {
-        Note n = new Note("untitled");
-        this.notes.add(n);
-    }
+void createNote() {
+    notes.add(new Note);
+}
 
-    void storage(String fileName, int numTabs) {
-        String[] noteContent = loadStrings(fileName);
-    }
+void prepareNote() {
+}
+
+void storage() {
 }
