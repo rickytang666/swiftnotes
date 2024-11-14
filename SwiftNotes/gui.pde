@@ -53,7 +53,7 @@ public void createGUI(){
   textarea1.addEventHandler(this, "textarea1_changed");
   textarea1.setText("");
   textarea1.setVisible(false);
-  dropList1 = new GDropList(this, 31, 129, 157, 120, 5, 10);
+  dropList1 = new GDropList(this, 31, 129, 157, 150, 3, 30);
   dropList1.setItems(noteTitles, 0);
   dropList1.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   dropList1.addEventHandler(this, "dropList1_clicked");
