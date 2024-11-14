@@ -12,8 +12,9 @@ void storage(String fileName, int numTabs) {
 
 void updateGoldCoins() {
   for(int i = 0; i < notes.size(); i++){
-  Note x = notes.get(i);
-  x.updateWordNum();
-  int coinsAdded = x.wordNum / 20;
-  goldCoins += coinsAdded;
+    Note x = notes.get(i);
+    x.updateWordNum();
+    int coinsAdded = x.wordNum / 20;
+    goldCoins += coinsAdded;
+  }
 }
