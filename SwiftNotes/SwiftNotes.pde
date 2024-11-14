@@ -17,6 +17,9 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
   '%', '^', '~', '`', '+', '=', '<', '>', '\n', '\t'};
 
 
+String defaultFilePath = "SaveNotes.txt";
+PrintWriter writer = createWriter(defaultFilePath);
+
 
 void setup()
 {
