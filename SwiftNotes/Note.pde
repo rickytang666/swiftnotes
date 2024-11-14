@@ -15,7 +15,7 @@ class Note
     {
         this.title = t;
         this.text = "";
-        this.numWords = 0;
+        this.wordNum = 0;
     }
 
 
