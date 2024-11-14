@@ -15,7 +15,7 @@
  */
 
 public void textarea1_change1(GTextArea source, GEvent event) { //_CODE_:textarea1:266170:
-  
+  println("textarea1 - GTextArea >> GEvent." + event + " @ " + millis());
 } //_CODE_:textarea1:266170:
 
 
