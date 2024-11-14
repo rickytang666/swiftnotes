@@ -19,6 +19,7 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
 
 
 int goldCoins = 0;
+String password;
 ArrayList<Note> notes = new ArrayList<Note>();
 
 
