@@ -10,3 +10,11 @@ int countWordNum(String input)
 
     return words.length;
 }
+
+
+
+void clearFile()
+{
+    writer = createWriter(defaultFilePath);
+    writer.close();
+}
