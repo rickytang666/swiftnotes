@@ -1,3 +1,4 @@
+
 // This file is for the user class
     int goldCoins;
     ArrayList<Note> notes;
