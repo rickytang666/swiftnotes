@@ -18,15 +18,18 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
   '%', '^', '~', '`', '+', '=', '<', '>', '\n', '\t'};
 
 
+final String filePath = "NoteStorage.txt";
 int goldCoins = 0;
 String password;
 ArrayList<Note> notes = new ArrayList<Note>();
+Note currentNote;
+String[] noteTitles = {"No Notes Yet"};
 
 
 void setup()
 {
   size(1000, 700);
-  //createGUI();
+  createGUI();
       
 }
 
@@ -35,4 +38,10 @@ void setup()
 void draw()
 {
     
+}
+
+
+void exit()
+{
+  saveNotes();
 }

@@ -3,7 +3,7 @@ class Note
     // FIELDS
 
     String title;
-    String createdDate;
+    String createdTime;
     String text;
     int wordNum;
 
@@ -14,6 +14,7 @@ class Note
     Note(String t)
     {
         this.title = t;
+        this.createdTime = getTimeStr();
         this.text = "";
         this.wordNum = 0;
     }
@@ -21,13 +22,6 @@ class Note
 
 
     // METHODS
-
-    void saveNote()
-    {
-        
-    }
-
-
     
     void updateWordNum()
     {
