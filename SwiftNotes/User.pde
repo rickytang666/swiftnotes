@@ -1,14 +1,19 @@
-// This file is for the user data and functions
 
-int goldCoins;
-ArrayList<Note> notes;
+// This file is for the user class
 
 void createNote() {
-    notes.add(new Note);
+    Note n = new Note("untitled");
+    notes.add(n);
 }
 
-void prepareNote() {
+void storage(String fileName, int numTabs) {
+  String[] noteContent = loadStrings(fileName);
 }
 
-void storage() {
+void updateGoldCoins() {
+  for(int i = 0; i < notes.size(); i++){
+  Note x = notes.get(i);
+  x.updateWordNum();
+  int coinsAdded = x.wordNum / 20;
+  goldCoins += coinsAdded;
 }

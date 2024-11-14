@@ -15,7 +15,7 @@
  */
 
 public void textarea1_change1(GTextArea source, GEvent event) { //_CODE_:textarea1:266170:
-  
+  println("textarea1 - GTextArea >> GEvent." + event + " @ " + millis());
 } //_CODE_:textarea1:266170:
 
 
@@ -27,7 +27,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  textarea1 = new GTextArea(this, 193, 128, 667, 487, G4P.SCROLLBARS_NONE);
+  textarea1 = new GTextArea(this, 255, 130, 667, 487, G4P.SCROLLBARS_BOTH);
   textarea1.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   textarea1.setOpaque(true);
   textarea1.addEventHandler(this, "textarea1_change1");

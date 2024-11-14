@@ -24,7 +24,7 @@ class Note
 
     void saveNote()
     {
-        // Empty for now
+        
     }
 
 

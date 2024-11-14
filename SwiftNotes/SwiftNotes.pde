@@ -8,23 +8,25 @@
 */
 
 // Importing Packages
+
 import g4p_controls.*;
 
-// Global Variables/Contants
+// Global Variables or Contants
 
 char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '_',
  '[', ']', '{', '}', '/', '\\', '|', '&', '*', '@', '#', '$',
   '%', '^', '~', '`', '+', '=', '<', '>', '\n', '\t'};
 
 
-String defaultFilePath = "SaveNotes.txt";
-PrintWriter writer = createWriter(defaultFilePath);
+int goldCoins = 0;
+ArrayList<Note> notes = new ArrayList<Note>();
 
 
 void setup()
 {
-    size(1000, 700);
-    createGUI();
+  size(1000, 700);
+  createGUI();
+      
 }
 
 

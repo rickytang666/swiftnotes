@@ -15,6 +15,5 @@ int countWordNum(String input)
 
 void clearFile()
 {
-    writer = createWriter(defaultFilePath);
-    writer.close();
+    
 }
