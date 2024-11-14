@@ -1,7 +1,4 @@
 // This file is for the user class
-
-class User 
-{
     int goldCoins;
     ArrayList<Note> notes;
 
@@ -11,6 +8,13 @@ class User
     }
 
     void storage(String fileName, int numTabs) {
-        String[] noteContent = loadStrings(fileName);
+      String[] noteContent = loadStrings(fileName);
     }
-}
+    
+    void updateGoldCoins(){
+      for(int i = 0; i <= notes.size(); i++){
+      Note x = notes.get(i);
+      x.updateWordNum();
+      int coinsAdded = wordNum / 20;
+      goldCoins += coinsAdded;
+    }
