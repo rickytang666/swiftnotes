@@ -25,7 +25,7 @@ ArrayList<Note> notes = new ArrayList<Note>();
 void setup()
 {
   size(1000, 700);
-  createGUI();
+  //createGUI();
       
 }
 
