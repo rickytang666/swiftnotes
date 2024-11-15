@@ -6,6 +6,7 @@ void createNote(String title)
     notes.add(n);
     currentNote = notes.get(notes.size()-1);
     
+    saveNotes();
 }
 
 
@@ -81,7 +82,7 @@ void scrollUp()
 
 void scrollDown()
 {
-  int maxY = buttonsUpBound + scrolledDist + (note.size() - 1) * buttonHeight;
+  int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
 
   if ( maxY > height - buttonHeight) 
   {
@@ -93,13 +94,15 @@ void scrollDown()
 
 void scrollBottom()
 {
-  int maxY = buttonsUpBound + scrolledDist + (note.size() - 1) * buttonHeight;
+  int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
 
-  if ( maxY > height - buttonHeight)
-  {
-    scrolledDist -= (maxY - (height - buttonHeight));
-    updateSidebar();
+  while (maxY > height - buttonHeight)
+  {  
+    scrolledDist -= buttonHeight;
+    maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
   }
+
+  updateSidebar();
 }
 
 
@@ -114,12 +117,28 @@ void scrollTop()
 void updateSidebar() 
 {
   // Clear previous buttons to avoid duplicates
-  for (GButton button : noteButtons) {
-    button.dispose();
+
+  for (GButton button : noteButtons) 
+  {
+    if (button != null)
+    {
+      button.dispose();
+    }
   }
   noteButtons.clear();
+
+  for (GButton button : delButtons) 
+  {
+    if (button != null)
+    {
+      button.dispose();
+    }
+  }
+
+  delButtons.clear();
   
   // Only add visible notes, considering the scroll distance
+
   for (int i = 0; i < notes.size(); i++) 
   {
     int yPos = buttonsUpBound + scrolledDist + i * buttonHeight;
@@ -129,19 +148,27 @@ void updateSidebar()
       visible = true;
     }
     
-    GButton newButton = new GButton(this, 10, yPos, 150, buttonHeight - 10);
-    newButton.setText(notes.get(i).title);
-    newButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
-    newButton.addEventHandler(this, "noteButton_clicked");
-    newButton.setVisible(visible);
-    noteButtons.add(newButton);
+    GButton noteBtn = new GButton(this, 10, yPos, 150, buttonHeight - 10);
+    noteBtn.setText(notes.get(i).title);
+    noteBtn.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+    noteBtn.addEventHandler(this, "noteButton_clicked");
+    noteBtn.setVisible(visible);
+    noteButtons.add(noteBtn);
+
+    GButton delBtn = new GButton(this, 170, yPos, 20, buttonHeight - 10);
+    delBtn.setText("-");
+    delBtn.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+    delBtn.addEventHandler(this, "delButton_clicked");
+    delBtn.setVisible(visible);
+    delButtons.add(delBtn);
   }
   
   
   for (GButton button : noteButtons) {
     sidebarPanel.addControl(button);
   }
+
+  for (GButton button : delButtons) {
+    sidebarPanel.addControl(button);
+  }
 }
-
-
-

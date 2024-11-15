@@ -60,6 +60,7 @@ public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textf
 public void noteButton_clicked(GButton source, GEvent event) 
 {
   int index = noteButtons.indexOf(source);
+
   if (index >= 0 && index < notes.size()) 
   {
     currentNote = notes.get(index);
@@ -72,12 +73,74 @@ public void noteButton_clicked(GButton source, GEvent event)
   }
 }
 
-void scrollUpButton_clicked(GButton source, GEvent event) {
+public void delButton_clicked(GButton source, GEvent event) 
+{
+  int index = delButtons.indexOf(source);
+
+  if (index >= 0 && index < notes.size()) 
+  {
+    // Remove the selected note
+    notes.remove(index);
+
+    // Update the currentNote
+    if (notes.isEmpty()) 
+    {
+      currentNote = null;
+      println("empty");
+      textfield1.setText("No notes yet");
+      textarea1.setText("");
+    } 
+    else 
+    {
+      if (index < notes.size() - 1) 
+      {
+        // Select the note now at the same index
+        currentNote = notes.get(index);
+      } 
+      else 
+      {
+        // If the last note was deleted, select the new last note
+        currentNote = notes.get(notes.size() - 1);
+        if (scrolledDist < 0)
+        {
+          scrolledDist += buttonHeight;
+        }
+      }
+      
+      textfield1.setText(currentNote.title);
+      textarea1.setText(currentNote.text);
+    }
+
+    // save the result
+    saveNotes();
+
+    // Always update the sidebar to reflect changes
+    updateSidebar();
+  } 
+  else 
+  {
+    println("Error: Could not locate the selected note.");
+  }
+}
+
+public void scrollUpButton_clicked(GButton source, GEvent event)
+{
   scrollUp();
 }
 
-void scrollDownButton_clicked(GButton source, GEvent event) {
+public void scrollDownButton_clicked(GButton source, GEvent event)
+{
   scrollDown();
+}
+
+public void scrollTopButton_clicked(GButton source, GEvent event)
+{
+  scrollTop();
+}
+
+public void scrollBottomButton_clicked(GButton source, GEvent event)
+{
+  scrollBottom();
 }
 
 
@@ -120,15 +183,25 @@ public void createGUI(){
   sidebarPanel.setCollapsed(false);
   sidebarPanel.setVisible(true);
   
-  scrollUpButton = new GButton(this, 200, 10, 40, 30);
+  scrollUpButton = new GButton(this, 210, 50, 40, 30);
   scrollUpButton.setText("Up");
   scrollUpButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   scrollUpButton.addEventHandler(this, "scrollUpButton_clicked");
-
-  scrollDownButton = new GButton(this, 200, 400, 40, 30);
+  
+  scrollDownButton = new GButton(this, 210, 600, 40, 30);
   scrollDownButton.setText("Down");
   scrollDownButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   scrollDownButton.addEventHandler(this, "scrollDownButton_clicked");
+  
+  scrollTopButton = new GButton(this, 210, 10, 40, 30);
+  scrollTopButton.setText("Top");
+  scrollTopButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  scrollTopButton.addEventHandler(this, "scrollTopButton_clicked");
+  
+  scrollBottomButton = new GButton(this, 210, 650, 40, 30);
+  scrollBottomButton.setText("Bottom");
+  scrollBottomButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  scrollBottomButton.addEventHandler(this, "scrollBottomButton_clicked");
   
   
   updateSidebar();
@@ -141,4 +214,5 @@ GPanel sidebarPanel;
 GButton addButton;
 GTextField textfield1;
 ArrayList<GButton> noteButtons = new ArrayList<GButton>();
-GButton scrollUpButton, scrollDownButton;
+ArrayList<GButton> delButtons = new ArrayList<GButton>();
+GButton scrollUpButton, scrollDownButton, scrollTopButton, scrollBottomButton;
