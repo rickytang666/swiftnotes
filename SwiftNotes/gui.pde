@@ -30,6 +30,11 @@ public void addButton_clicked(GButton source, GEvent event) { //_CODE_:addButton
   textarea1.setText("");
   textfield1.setVisible(true);
   textfield1.setText(currentNote.title);
+  
+  if (( (notes.size() + 1) * buttonHeight) + scrolledDist > height) {
+    scrolledDist -= buttonHeight; 
+  }
+  
   updateSidebar();
 } //_CODE_:addButton:563243:
 
@@ -47,17 +52,17 @@ public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textf
 
 public void noteButton_clicked(GButton source, GEvent event) 
 {
-  
   int index = noteButtons.indexOf(source);
-  println(index);
   if (index >= 0 && index < notes.size()) 
   {
     currentNote = notes.get(index);
     textfield1.setText(currentNote.title);
     textarea1.setText(currentNote.text);  // Show the note content in the text area
   }
-  
-  println(currentNote.title);
+  else
+  {
+    println("Error: Could not locate the selected note.");
+  }
 }
 
 void scrollUpButton_clicked(GButton source, GEvent event) {
@@ -68,7 +73,7 @@ void scrollUpButton_clicked(GButton source, GEvent event) {
 }
 
 void scrollDownButton_clicked(GButton source, GEvent event) {
-  if ((notes.size() * buttonHeight) + scrolledDist > height) {
+  if (( (notes.size() + 1) * buttonHeight) + scrolledDist > height) {
     scrolledDist -= buttonHeight;
     updateSidebar();
   }
