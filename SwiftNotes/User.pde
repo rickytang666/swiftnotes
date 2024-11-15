@@ -12,7 +12,7 @@ void createNote(String title)
 
 void saveNotes() 
 {
-  PrintWriter pw = createWriter(filePath);
+  PrintWriter pw = createWriter(noteStoragePath);
 
   for (Note n : notes)
   {
@@ -31,7 +31,7 @@ void saveNotes()
 
 void importNotes()
 {
-  String[] lines = loadStrings(filePath);
+  String[] lines = loadStrings(noteStoragePath);
   for (int i = 0; i < lines.length; ++i)
   {
     if (lines[i].equals(separate))

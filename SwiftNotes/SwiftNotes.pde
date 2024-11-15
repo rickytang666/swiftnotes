@@ -18,7 +18,8 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
   '%', '^', '~', '`', '+', '=', '<', '>', '\n', '\t'};
 
 
-final String filePath = "NoteStorage.txt";
+final String noteStoragePath = "NoteStorage.txt";
+final String userStoragePath = "UserInfo.txt";
 final String separate = "||||||||||";
 int goldCoins = 0;
 String password;
