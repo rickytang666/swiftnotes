@@ -25,6 +25,7 @@ String password;
 ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
 
+final int buttonsUpBound = 40;
 final int buttonHeight = 40;
 int scrolledDist = 0;
 

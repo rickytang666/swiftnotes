@@ -32,11 +32,9 @@ public void addButton_clicked(GButton source, GEvent event) { //_CODE_:addButton
   textfield1.setVisible(true);
   textfield1.setText(currentNote.title);
   
-  if (( (notes.size() + 1) * buttonHeight) + scrolledDist > height) {
-    scrolledDist -= buttonHeight; 
-  }
+  scrollBottom();
   
-  updateSidebar();
+  
 } //_CODE_:addButton:563243:
 
 
@@ -75,17 +73,11 @@ public void noteButton_clicked(GButton source, GEvent event)
 }
 
 void scrollUpButton_clicked(GButton source, GEvent event) {
-  if (scrolledDist < 0) {
-    scrolledDist += buttonHeight;
-    updateSidebar();
-  }
+  scrollUp();
 }
 
 void scrollDownButton_clicked(GButton source, GEvent event) {
-  if (( (notes.size() + 1) * buttonHeight) + scrolledDist > height) {
-    scrolledDist -= buttonHeight;
-    updateSidebar();
-  }
+  scrollDown();
 }
 
 
