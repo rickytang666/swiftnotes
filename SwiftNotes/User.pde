@@ -1,33 +1,37 @@
-
 // This file is for the functions of a user
 
 void createNote(String title) {
     Note n = new Note(title);
     notes.add(n);
-    currentNote = n;
-    updateSidebar();
-    
+    currentNote = notes.get(notes.size()-1);
     
 }
 
-void updateSidebar()
-{
-  if(notes.isEmpty())
-  {
-    noteTitles = new String[]{"No Notes Yet"};
-    return;
+void updateSidebar() {
+  // Clear previous buttons to avoid duplicates
+  for (GButton button : noteButtons) {
+    button.dispose();
   }
+  noteButtons.clear();
   
-  noteTitles = new String[notes.size()];
-
-  for (int i = 0; i < notes.size(); ++i)
-  {
-    noteTitles[i] = notes.get(i).title;
+  // Only add visible notes, considering the scroll distance
+  for (int i = 0; i < notes.size(); i++) {
+    int yPos = buttonHeight + scrolledDist + i * buttonHeight;
+    Boolean visible = false;
+    // Only show buttons within the visible area
+    if (yPos >= buttonHeight && yPos <= height - buttonHeight) {
+      visible = true;
+    }
+    
+    GButton newButton = new GButton(this, 31, yPos, 157, 30);
+    newButton.setText(notes.get(i).title);
+    newButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+    newButton.addEventHandler(this, "noteButton_clicked");
+    newButton.setVisible(visible);
+    noteButtons.add(newButton);
   }
-  
-  dropList1.setItems(noteTitles, 0);
-  dropList1.setSelected(notes.indexOf(currentNote));
 }
+
 
 void saveNotes() 
 {

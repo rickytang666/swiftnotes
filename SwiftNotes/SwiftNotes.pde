@@ -25,6 +25,9 @@ ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
 String[] noteTitles = {"No Notes Yet"};
 
+final int buttonHeight = 40;
+int scrolledDist = 0;
+
 
 void setup()
 {
