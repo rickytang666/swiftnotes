@@ -30,6 +30,11 @@ void updateSidebar() {
     newButton.setVisible(visible);
     noteButtons.add(newButton);
   }
+  
+  
+  for (GButton button : noteButtons) {
+    sidebarPanel.addControl(button);
+  }
 }
 
 

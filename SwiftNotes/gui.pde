@@ -116,6 +116,8 @@ public void createGUI(){
   sidebarPanel = new GPanel(this, 0, 0, 200, height);
   sidebarPanel.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   sidebarPanel.setOpaque(true);
+  sidebarPanel.setCollapsed(false);
+  sidebarPanel.setVisible(true);
   
   scrollUpButton = new GButton(this, 200, 10, 40, 30);
   scrollUpButton.setText("Up");
