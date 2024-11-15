@@ -5,13 +5,12 @@ void createNote(String title) {
     Note n = new Note(title);
     notes.add(n);
     currentNote = n;
-    updateTitles();
-    dropList1.setItems(noteTitles, 0);
-    dropList1.setSelected(notes.indexOf(n));
+    updateSidebar();
+    
     
 }
 
-void updateTitles()
+void updateSidebar()
 {
   if(notes.isEmpty())
   {
@@ -25,6 +24,9 @@ void updateTitles()
   {
     noteTitles[i] = notes.get(i).title;
   }
+  
+  dropList1.setItems(noteTitles, 0);
+  dropList1.setSelected(notes.indexOf(currentNote));
 }
 
 void saveNotes() 
