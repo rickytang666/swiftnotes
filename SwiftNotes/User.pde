@@ -3,8 +3,7 @@
 void createNote(String title) {
     Note n = new Note(title);
     notes.add(n);
-    currentNote = n;
-    
+    currentNote = notes.get(notes.size()-1);
     
 }
 

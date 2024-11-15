@@ -25,6 +25,7 @@ public void textarea1_changed(GTextArea source, GEvent event) { //_CODE_:textare
 
 
 public void addButton_clicked(GButton source, GEvent event) { //_CODE_:addButton:563243:
+
   createNote(generateUniqueTitle());
   textarea1.setVisible(true);
   textarea1.setText("");
@@ -40,13 +41,21 @@ public void addButton_clicked(GButton source, GEvent event) { //_CODE_:addButton
 
 
 public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:837306:
-  if (currentNote != null)
+  try
   {
-    currentNote.title = textfield1.getText();
+    if (event == GEvent.CHANGED && currentNote != null)
+    {
+      currentNote.title = textfield1.getText();
+      updateSidebar();
+      saveNotes();
+    }
+  }
+  catch (NullPointerException e)
+  {
+    println("monkey");
   }
   
-  updateSidebar();
-  saveNotes();
+  
 } //_CODE_:textfield1:837306:
 
 
@@ -99,7 +108,7 @@ public void createGUI(){
   addButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   addButton.addEventHandler(this, "addButton_clicked");
   
-  textfield1 = new GTextField(this, 496, 80, 120, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
+  textfield1 = new GTextField(this, 496, 80, 120, 60, G4P.SCROLLBARS_HORIZONTAL_ONLY);
   textfield1.setOpaque(true);
   textfield1.addEventHandler(this, "textfield1_change1");
   textfield1.setVisible(false);
