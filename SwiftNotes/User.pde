@@ -6,6 +6,9 @@ void createNote(String title) {
     notes.add(n);
     currentNote = n;
     updateTitles();
+    dropList1.setItems(noteTitles, 0);
+    dropList1.setSelected(notes.indexOf(n));
+    
 }
 
 void updateTitles()
@@ -22,8 +25,6 @@ void updateTitles()
   {
     noteTitles[i] = notes.get(i).title;
   }
-
-  dropList1.setItems(noteTitles, noteTitles.length - 1);
 }
 
 void saveNotes() 

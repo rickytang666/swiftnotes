@@ -28,6 +28,8 @@ public void dropList1_clicked(GDropList source, GEvent event) { //_CODE_:dropLis
   if (index >= 0 && index < notes.size()) 
   {
     currentNote = notes.get(index);
+    dropList1.setItems(noteTitles, index);
+    dropList1.setSelected(index);
     textarea1.setText(currentNote.text);
   }
 } //_CODE_:dropList1:310236:
