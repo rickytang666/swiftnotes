@@ -61,9 +61,33 @@ void updateGoldCoins() {
   for(int i = 0; i < notes.size(); i++){
     Note x = notes.get(i);
     x.updateWordNum();
-    int coinsAdded = x.wordNum / 20;
-    goldCoins += coinsAdded;
+    goldCoins = floor(x.wordNum / 5);
   }
+}
+
+
+void importUserData()
+{
+  String[] lines = loadStrings(userStoragePath);
+  
+  goldCoins = int(lines[0]);
+  font = lines[1];
+  fontSize = constrain(int(lines[2]), 5, 25);
+  darkMode = lines[3].equals("true") ? true : false;
+}
+
+
+void saveUserData()
+{
+  PrintWriter pw = createWriter(userStoragePath);
+  
+  pw.println(goldCoins);
+  pw.println(font);
+  pw.println(fontSize);
+  pw.println((darkMode) ? "true" : "false");
+  
+  pw.flush();
+  pw.close();
 }
 
 

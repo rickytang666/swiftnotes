@@ -22,6 +22,9 @@ final String noteStoragePath = "NoteStorage.txt";
 final String userStoragePath = "UserInfo.txt";
 final String separate = "||||||||||";
 int goldCoins = 0;
+int fontSize = 5;
+String font = "none";
+Boolean darkMode = false;
 String password;
 ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
@@ -35,6 +38,7 @@ void setup()
 {
   size(1000, 700);
   importNotes();
+  importUserData();
   
   
   createGUI();
@@ -52,4 +56,5 @@ void draw()
 void exit()
 {
   saveNotes();
+  saveUserData();
 }

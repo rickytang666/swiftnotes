@@ -21,6 +21,7 @@ public void textarea1_changed(GTextArea source, GEvent event) { //_CODE_:textare
   }
   
   saveNotes();
+  updateGoldCoins();
 } //_CODE_:textarea1:266170:
 
 
@@ -171,23 +172,43 @@ public void openSettingsWindow() {
   
   settingsWindow.setActionOnClose(G4P.CLOSE_WINDOW);
 
-  // Example: Add a label or other controls
-  GLabel settingsLabel = new GLabel(settingsWindow, 50, 50, 300, 30);
-  settingsLabel.setText("Adjust your settings here!");
-  settingsLabel.setLocalColorScheme(GCScheme.BLUE_SCHEME);
-  settingsLabel.setOpaque(true);
+  
+  GCustomSlider fontSizeSlider = new GCustomSlider(settingsWindow, 50, 50, 200, 40);
+  fontSizeSlider.setLimits(fontSize, 5, 25);
+  fontSizeSlider.setNumberFormat(G4P.INTEGER, 0);
+  fontSizeSlider.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  fontSizeSlider.addEventHandler(this, "fontSizeSlider_dragged");
+  fontSizeSlider.setShowLimits(true);
+  fontSizeSlider.setNbrTicks(10);
+  fontSizeSlider.setOpaque(true);
+  
+  GOption modeToggle = new GOption(settingsWindow, 50, 100, 200, 40);
+  modeToggle.setText("Open Dark Mode");
+  modeToggle.setSelected(darkMode);
+  modeToggle.addEventHandler(this, "modeToggle_changed");
 }
 
 
 public void settingsWindow_draw(PApplet appc, GWinData data) {
   appc.background(220);
   appc.fill(0);
-  appc.text("Settings Window", 20, 20);
 }
 
 public void settingsWindow_close(GWindow window) {
   window.dispose(); // Explicitly dispose of the GWindow instance
   settingsWindow = null; // Dereference to allow reopening later
+}
+
+public void fontSizeSlider_dragged(GCustomSlider source, GEvent event) {
+  fontSize = source.getValueI();
+  
+  saveUserData();
+}
+
+public void modeToggle_changed(GOption source, GEvent event) {
+  darkMode = source.isSelected();
+  
+  saveUserData();
 }
 
 
