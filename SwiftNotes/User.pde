@@ -47,7 +47,7 @@ void saveNotes()
     pw.println(n.title);
     pw.println(n.createdTime);
     pw.println(n.text);
-    pw.println("*****");
+    pw.println(separate);
   }
 
   pw.flush();
@@ -55,6 +55,35 @@ void saveNotes()
   
   //println("saved");
 }
+
+
+void importNotes()
+{
+  String[] lines = loadStrings(filePath);
+  for (int i = 0; i < lines.length; ++i)
+  {
+    if (lines[i].equals(separate))
+    {
+      String title = lines[i - 3];
+      String time = lines[i - 2];
+      String content = lines[i - 1];
+
+      Note note = new Note(title);
+      note.createdTime = time;
+      note.text = content;
+
+      notes.add(note);
+    }
+  }
+  
+  if (notes.isEmpty())
+    println("monkey");
+  else
+  {
+    currentNote = notes.get(0);
+  }
+}
+
 
 void updateGoldCoins() {
   for(int i = 0; i < notes.size(); i++){

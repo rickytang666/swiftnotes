@@ -111,7 +111,16 @@ public void createGUI(){
   textfield1 = new GTextField(this, 496, 80, 120, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
   textfield1.setOpaque(true);
   textfield1.addEventHandler(this, "textfield1_change1");
-  textfield1.setVisible(false);
+  
+  if (!notes.isEmpty()) {
+    textfield1.setVisible(true); // This works for the text field
+    textarea1.setVisible(true); // Ensure the text area is also visible
+    textarea1.setText(currentNote.text); // Populate the text area
+  } else {
+      textfield1.setVisible(false);
+      textarea1.setVisible(false);
+  }
+
   
   sidebarPanel = new GPanel(this, 0, 0, 200, height);
   sidebarPanel.setLocalColorScheme(GCScheme.PURPLE_SCHEME);

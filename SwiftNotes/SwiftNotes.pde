@@ -19,11 +19,11 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
 
 
 final String filePath = "NoteStorage.txt";
+final String separate = "||||||||||";
 int goldCoins = 0;
 String password;
 ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
-String[] noteTitles = {"No Notes Yet"};
 
 final int buttonHeight = 40;
 int scrolledDist = 0;
@@ -32,6 +32,9 @@ int scrolledDist = 0;
 void setup()
 {
   size(1000, 700);
+  importNotes();
+  
+  
   createGUI();
       
 }
