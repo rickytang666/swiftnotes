@@ -181,37 +181,44 @@ public void openSettingsWindow() {
   fontSizeSlider.setShowLimits(true);
   fontSizeSlider.setOpaque(true);
   
+  
   modeToggle = new GOption(settingsWindow, 10, 150, 150, 40);
   modeToggle.setText("Open Dark Mode");
   modeToggle.setSelected(mode.isDarkMode);
   modeToggle.addEventHandler(this, "modeToggle_changed");
+  modeToggle.setFont(UIFont);
   
   fontDropList = new GDropList(settingsWindow, 200, 50, 200, 200, 4, 20);
   fontDropList.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   ArrayList<String> temp = new ArrayList<String>(Arrays.asList(fonts));
-  fontDropList.setItems(fonts, temp.indexOf(font));
+  fontDropList.setItems(fonts, temp.indexOf(noteFontStr));
   fontDropList.addEventHandler(this, "fontDropList_clicked");
+  fontDropList.setFont(UIFont);
   
   inputLabel = new GLabel(settingsWindow, 450, 10, 200, 30, "Enter New Password: ");
   inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  inputLabel.setFont(UIFont);
   
   input = new GPassword(settingsWindow, 450, 60, 200, 50);
   input.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  input.setFont(UIFont);
     
   confirmLabel = new GLabel(settingsWindow, 450, 130, 200, 30, "Confirm Password: ");
   confirmLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  confirmLabel.setFont(UIFont);
   
   confirm = new GPassword(settingsWindow, 450, 180, 200, 50);
   confirm.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  confirm.setFont(UIFont);
     
   
   submit = new GButton(settingsWindow, 450, 250, 100, 30, "Submit");
   submit.addEventHandler(this, "submitPassword2");
+  submit.setFont(UIFont);
   
   warning = new GLabel(settingsWindow, 450, 300, 200, 100, "");
   
   setColors2();
-  updateFont2();
 }
 
 
@@ -229,8 +236,7 @@ public void fontSizeSlider_dragged(GCustomSlider source, GEvent event) {
   try {
     fontSize = source.getValueI(); // Update the font size
     //println("Font size updated to: " + fontSize);
-    updateFontMain(); // Update main window fonts
-    updateFont2(); // Update settings window fonts
+    updateFont(); // Update main window fonts
     saveUserData(); // Save changes
   } catch (IndexOutOfBoundsException e) {
     println("Index out of bounds while updating font size: " + e.getMessage());
@@ -250,10 +256,9 @@ public void modeToggle_changed(GOption source, GEvent event) {
 
 public void fontDropList_clicked(GDropList source, GEvent event) 
 {
-  font = source.getSelectedText();
+  noteFontStr = source.getSelectedText();
   //println(font);
-  updateFontMain();
-  updateFont2();
+  updateFont();
   saveUserData(); 
 }
 
@@ -295,6 +300,7 @@ public void createGUI(){
   addButton.setText("Add Note");
   addButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   addButton.addEventHandler(this, "addButton_clicked");
+  addButton.setFont(UIFont);
   
   textfield1 = new GTextField(this, 280, 70, 600, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
   textfield1.setOpaque(true);
@@ -316,11 +322,13 @@ public void createGUI(){
   sidebarPanel.setOpaque(true);
   sidebarPanel.setCollapsed(false);
   sidebarPanel.setVisible(true);
+  sidebarPanel.setFont(UIFont);
   
   scrollUpButton = new GButton(this, 210, 50, 40, 30);
   scrollUpButton.setText("Up");
   scrollUpButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   scrollUpButton.addEventHandler(this, "scrollUpButton_clicked");
+  scrollUpButton.setFont(UIFont);
   
   scrollDownButton = new GButton(this, 210, 600, 40, 30);
   scrollDownButton.setText("Down");
@@ -331,20 +339,23 @@ public void createGUI(){
   scrollTopButton.setText("Top");
   scrollTopButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   scrollTopButton.addEventHandler(this, "scrollTopButton_clicked");
+  scrollTopButton.setFont(UIFont);
   
   scrollBottomButton = new GButton(this, 210, 650, 40, 30);
   scrollBottomButton.setText("Bottom");
   scrollBottomButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   scrollBottomButton.addEventHandler(this, "scrollBottomButton_clicked");
+  scrollBottomButton.setFont(UIFont);
 
   settingsButton = new GButton(this, width - 100, 10, 90, 30);
   settingsButton.setText("Settings");
   settingsButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   settingsButton.addEventHandler(this, "settingsButton_clicked");
+  settingsButton.setFont(UIFont);
   
   updateSidebar();
   setColorsMain();
-  updateFontMain();
+  updateFont();
 }
 
 // Variable declarations 

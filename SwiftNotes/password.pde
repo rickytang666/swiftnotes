@@ -7,16 +7,13 @@ void setNewPassword(String newPass)
 
 void showAuthenticationScreen() 
 {
-  // make background a little bit grey
-  
-  Font labelFont = new Font("Arial", Font.PLAIN, 16);
   
   input = new GPassword(this, 200, height / 2 - 100, 200, 50);
   input.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   
   inputLabel = new GLabel(this, 50, height / 2 - 100, 100, 50, "Enter Password: ");
   inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  inputLabel.setFont(labelFont);
+  inputLabel.setFont(UIFont);
   
   if (firstTime)
   {
@@ -27,16 +24,17 @@ void showAuthenticationScreen()
     
     confirmLabel = new GLabel(this, 50, height / 2 - 50, 100, 50, "Confirm Password: ");
     confirmLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-    confirmLabel.setFont(labelFont);
+    confirmLabel.setFont(UIFont);
   }
   
   submit = new GButton(this, 200, height / 2 + 80, 100, 30, "Submit");
   submit.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   submit.addEventHandler(this, "submitPassword1");
+  submit.setFont(UIFont);
   
   warning = new GLabel(this, 200, height / 2 + 150, 300, 50, "");
   warning.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  warning.setFont(labelFont);
+  warning.setFont(UIFont);
   
 }
 

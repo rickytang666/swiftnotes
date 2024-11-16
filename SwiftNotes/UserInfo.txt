@@ -1,5 +1,5 @@
 0
-Inter
+Comic Sans MS
 16
 true
 abcde

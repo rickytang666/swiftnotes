@@ -82,7 +82,7 @@ void importUserData()
   }
   
   goldCoins = int(lines[0]);
-  font = lines[1];
+  noteFontStr = lines[1];
   fontSize = constrain(int(lines[2]), minSize, maxSize);
   mode.setMode(lines[3].equals("true") ? true : false);
 }
@@ -109,7 +109,7 @@ void saveUserData()
   PrintWriter pw = createWriter(userStoragePath);
   
   pw.println(goldCoins);
-  pw.println(font);
+  pw.println(noteFontStr);
   pw.println(fontSize);
   pw.println((mode.isDarkMode) ? "true" : "false");
   pw.println(password);
@@ -216,7 +216,7 @@ void updateSidebar()
     noteBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     noteBtn.addEventHandler(this, "noteButton_clicked");
     noteBtn.setVisible(visible);
-    noteBtn.setFont(globalFont);
+    noteBtn.setFont(UIFont);
     noteButtons.add(noteBtn);
 
     GButton delBtn = new GButton(this, 170, yPos, 20, buttonHeight - 10);
@@ -277,39 +277,28 @@ void setColors2()
 }
 
 
-void updateFontMain()
+void initializeUIFont()
 {
-  globalFont = new Font(font, Font.PLAIN, fontSize);
-
-  sidebarPanel.setFont(globalFont);
-  textfield1.setFont(globalFont);
-  textarea1.setFont(globalFont);
-  
-  for (GButton button : noteButtons)
+  try {
+    File fontFile = new File(dataPath("ProductSans-Regular.ttf"));
+    UIFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+    UIFont = UIFont.deriveFont(15f);
+    println("Font loaded successfully.");
+  } 
+  catch (FontFormatException | IOException e) 
   {
-    button.setFont(globalFont);
+    e.printStackTrace();
+    println("Error loading font: " + e.getMessage());
   }
-
-  for (GButton button : delButtons)
-  {
-    button.setFont(globalFont);
-  }
-
-  
 }
 
 
-void updateFont2()
+void updateFont()
 {
-  globalFont = new Font(font, Font.PLAIN, fontSize);
-
-  modeToggle.setFont(globalFont);
-  fontDropList.setFont(globalFont);
-  input.setFont(globalFont);
-  confirm.setFont(globalFont);
-  inputLabel.setFont(globalFont);
-  confirmLabel.setFont(globalFont);
-  warning.setFont(globalFont);
+  noteFont = new Font(noteFontStr, Font.PLAIN, fontSize);
+  
+  textfield1.setFont(noteFont);
+  textarea1.setFont(noteFont);
 
   
 }

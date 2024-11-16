@@ -12,6 +12,10 @@
 import g4p_controls.*;
 import java.util.*;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
+import java.awt.FontFormatException;
+
 
 // Global Variables or Contants
 
@@ -31,7 +35,7 @@ final int maxSize = 20;
 final int minSize = 10;
 int goldCoins = 0;
 int fontSize = 5;
-String font = "Arial";
+String noteFontStr = "Arial";
 Mode mode = new Mode();
 
 String password;
@@ -40,7 +44,8 @@ Boolean firstTime = true;
 
 ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
-Font globalFont = new Font(font, Font.PLAIN, fontSize);
+Font UIFont;
+Font noteFont = new Font(noteFontStr, Font.PLAIN, fontSize);
 
 final int buttonsUpBound = 40;
 final int buttonHeight = 40;
@@ -51,6 +56,8 @@ void setup()
 {
   
   size(1000, 700);
+  
+  initializeUIFont();
   
   importPassword();
   
