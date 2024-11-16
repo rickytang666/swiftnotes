@@ -176,6 +176,7 @@ public void openSettingsWindow() {
   fontSizeSlider = new GCustomSlider(settingsWindow, 50, 50, 200, 40);
   fontSizeSlider.setLimits(fontSize, 5, 25);
   fontSizeSlider.setNumberFormat(G4P.INTEGER, 0);
+  fontSizeSlider.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   fontSizeSlider.addEventHandler(this, "fontSizeSlider_dragged");
   fontSizeSlider.setShowLimits(true);
   fontSizeSlider.setNbrTicks(10);
@@ -183,16 +184,14 @@ public void openSettingsWindow() {
   
   modeToggle = new GOption(settingsWindow, 50, 100, 200, 40);
   modeToggle.setText("Open Dark Mode");
-  modeToggle.setSelected(mode.isDarkMode);
+  modeToggle.setSelected(darkMode);
   modeToggle.addEventHandler(this, "modeToggle_changed");
-  
-  setColors2();
 }
 
 
 public void settingsWindow_draw(PApplet appc, GWinData data) {
-  appc.background(mode.background);
-  appc.fill(mode.foreground);
+  appc.background(220);
+  appc.fill(0);
 }
 
 public void settingsWindow_close(GWindow window) {
@@ -207,10 +206,8 @@ public void fontSizeSlider_dragged(GCustomSlider source, GEvent event) {
 }
 
 public void modeToggle_changed(GOption source, GEvent event) {
-  mode.setMode(source.isSelected());
+  darkMode = source.isSelected();
   
-  setColorsMain();
-  setColors2();
   saveUserData();
 }
 
@@ -223,19 +220,19 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.ORANGE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("SwiftNotes App");
-  textarea1 = new GTextArea(this, 280, 130, 600, 500, G4P.SCROLLBARS_BOTH);
+  textarea1 = new GTextArea(this, 255, 130, 667, 487, G4P.SCROLLBARS_BOTH);
   textarea1.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   textarea1.setOpaque(true);
   textarea1.addEventHandler(this, "textarea1_changed");
   textarea1.setText("");
   textarea1.setVisible(false);
   
-  addButton = new GButton(this, 515, 10, 80, 30);
+  addButton = new GButton(this, 515, 40, 80, 30);
   addButton.setText("Add Note");
   addButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   addButton.addEventHandler(this, "addButton_clicked");
   
-  textfield1 = new GTextField(this, 280, 70, 600, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
+  textfield1 = new GTextField(this, 496, 80, 120, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
   textfield1.setOpaque(true);
   textfield1.addEventHandler(this, "textfield1_change1");
   
@@ -284,7 +281,6 @@ public void createGUI(){
   
   
   updateSidebar();
-  setColorsMain();
 }
 
 // Variable declarations 

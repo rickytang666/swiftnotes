@@ -24,7 +24,7 @@ final String separate = "||||||||||";
 int goldCoins = 0;
 int fontSize = 5;
 String font = "none";
-Boolean darkMode = false;
+Mode mode = new Mode();
 String password;
 ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
@@ -40,7 +40,6 @@ void setup()
   importNotes();
   importUserData();
   
-  
   createGUI();
       
 }
@@ -49,7 +48,7 @@ void setup()
 
 void draw()
 {
-    
+    background(mode.background);
 }
 
 

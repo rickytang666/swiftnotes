@@ -73,7 +73,7 @@ void importUserData()
   goldCoins = int(lines[0]);
   font = lines[1];
   fontSize = constrain(int(lines[2]), 5, 25);
-  darkMode = lines[3].equals("true") ? true : false;
+  mode.setMode(lines[3].equals("true") ? true : false);
 }
 
 
@@ -84,7 +84,7 @@ void saveUserData()
   pw.println(goldCoins);
   pw.println(font);
   pw.println(fontSize);
-  pw.println((darkMode) ? "true" : "false");
+  pw.println((mode.isDarkMode) ? "true" : "false");
   
   pw.flush();
   pw.close();
@@ -174,14 +174,14 @@ void updateSidebar()
     
     GButton noteBtn = new GButton(this, 10, yPos, 150, buttonHeight - 10);
     noteBtn.setText(notes.get(i).title);
-    noteBtn.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+    noteBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     noteBtn.addEventHandler(this, "noteButton_clicked");
     noteBtn.setVisible(visible);
     noteButtons.add(noteBtn);
 
     GButton delBtn = new GButton(this, 170, yPos, 20, buttonHeight - 10);
     delBtn.setText("-");
-    delBtn.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+    delBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     delBtn.addEventHandler(this, "delButton_clicked");
     delBtn.setVisible(visible);
     delButtons.add(delBtn);
@@ -195,4 +195,30 @@ void updateSidebar()
   for (GButton button : delButtons) {
     sidebarPanel.addControl(button);
   }
+}
+
+
+
+void setColorsMain()
+{
+  
+  sidebarPanel.setLocalColor(5, mode.panelBG);
+  sidebarPanel.setLocalColor(1, color(255, 165, 0));
+
+  textfield1.setLocalColor(7, mode.textBG);
+  textfield1.setLocalColor(12, mode.foreground);
+  textfield1.setLocalColor(2, mode.foreground);
+  
+  textarea1.setLocalColor(7, mode.textBG);
+  textarea1.setLocalColor(12, mode.foreground);
+  textarea1.setLocalColor(2, mode.foreground);
+
+  
+}
+
+
+void setColors2()
+{
+  modeToggle.setLocalColor(2, mode.foreground);
+  
 }
