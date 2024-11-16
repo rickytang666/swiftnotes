@@ -1,5 +1,5 @@
 0
-Arial
-15
+Inter
+16
 true
 abcde

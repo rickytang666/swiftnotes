@@ -179,7 +179,6 @@ public void openSettingsWindow() {
   fontSizeSlider.setNumberFormat(G4P.INTEGER, 0);
   fontSizeSlider.addEventHandler(this, "fontSizeSlider_dragged");
   fontSizeSlider.setShowLimits(true);
-  fontSizeSlider.setNbrTicks(10);
   fontSizeSlider.setOpaque(true);
   
   modeToggle = new GOption(settingsWindow, 10, 150, 150, 40);
@@ -187,6 +186,11 @@ public void openSettingsWindow() {
   modeToggle.setSelected(mode.isDarkMode);
   modeToggle.addEventHandler(this, "modeToggle_changed");
   
+  fontDropList = new GDropList(settingsWindow, 200, 50, 200, 200, 4, 20);
+  fontDropList.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  ArrayList<String> temp = new ArrayList<String>(Arrays.asList(fonts));
+  fontDropList.setItems(fonts, temp.indexOf(font));
+  fontDropList.addEventHandler(this, "fontDropList_clicked");
   
   inputLabel = new GLabel(settingsWindow, 450, 10, 200, 30, "Enter Password: ");
   inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
@@ -222,21 +226,19 @@ public void settingsWindow_close(GWindow window) {
 }
 
 public void fontSizeSlider_dragged(GCustomSlider source, GEvent event) {
-  
-  try
-  {
-    fontSize = source.getValueI();
-  
-    updateFontMain();
-    updateFont2();
-    saveUserData();
+  try {
+    fontSize = source.getValueI(); // Update the font size
+    //println("Font size updated to: " + fontSize);
+    updateFontMain(); // Update main window fonts
+    updateFont2(); // Update settings window fonts
+    saveUserData(); // Save changes
+  } catch (IndexOutOfBoundsException e) {
+    println("Index out of bounds while updating font size: " + e.getMessage());
+  } catch (Exception e) {
+    println("Unexpected error in fontSizeSlider_dragged: " + e.getMessage());
   }
-  catch (Exception e)
-  {
-    println("uhhh");
-  }
-  
 }
+
 
 public void modeToggle_changed(GOption source, GEvent event) {
   mode.setMode(source.isSelected());
@@ -245,6 +247,16 @@ public void modeToggle_changed(GOption source, GEvent event) {
   setColors2();
   saveUserData();
 }
+
+public void fontDropList_clicked(GDropList source, GEvent event) 
+{
+  font = source.getSelectedText();
+  //println(font);
+  updateFontMain();
+  updateFont2();
+  saveUserData(); 
+}
+
 
 public void submitPassword2(GButton source, GEvent event) 
 {
@@ -348,6 +360,7 @@ GButton settingsButton;
 GWindow settingsWindow;
 GCustomSlider fontSizeSlider;
 GOption modeToggle;
+GDropList fontDropList;
 
 GPassword input;
 GPassword confirm;

@@ -279,7 +279,7 @@ void setColors2()
 
 void updateFontMain()
 {
-  globalFont = new Font("Arial", Font.PLAIN, fontSize);
+  globalFont = new Font(font, Font.PLAIN, fontSize);
 
   sidebarPanel.setFont(globalFont);
   textfield1.setFont(globalFont);
@@ -301,9 +301,10 @@ void updateFontMain()
 
 void updateFont2()
 {
-  globalFont = new Font("Arial", Font.PLAIN, fontSize);
+  globalFont = new Font(font, Font.PLAIN, fontSize);
 
   modeToggle.setFont(globalFont);
+  fontDropList.setFont(globalFont);
   input.setFont(globalFont);
   confirm.setFont(globalFont);
   inputLabel.setFont(globalFont);
