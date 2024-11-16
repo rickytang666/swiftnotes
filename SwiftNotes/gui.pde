@@ -158,7 +158,7 @@ public void settingsButton_clicked(GButton source, GEvent event) {
 
 public void openSettingsWindow() {
   // Create the secondary window
-  settingsWindow = GWindow.getWindow(this, "Settings", 100, 100, 400, 300, JAVA2D);
+  settingsWindow = GWindow.getWindow(this, "Settings", 300, 300, 700, 400, JAVA2D);
   settingsWindow.addDrawHandler(this, "settingsWindow_draw");
   settingsWindow.addOnCloseHandler(this, "settingsWindow_close");
 
@@ -174,7 +174,7 @@ public void openSettingsWindow() {
   settingsWindow.setActionOnClose(G4P.CLOSE_WINDOW);
 
   
-  fontSizeSlider = new GCustomSlider(settingsWindow, 50, 50, 200, 80);
+  fontSizeSlider = new GCustomSlider(settingsWindow, 10, 50, 150, 60);
   fontSizeSlider.setLimits(fontSize, minSize, maxSize);
   fontSizeSlider.setNumberFormat(G4P.INTEGER, 0);
   fontSizeSlider.addEventHandler(this, "fontSizeSlider_dragged");
@@ -182,10 +182,29 @@ public void openSettingsWindow() {
   fontSizeSlider.setNbrTicks(10);
   fontSizeSlider.setOpaque(true);
   
-  modeToggle = new GOption(settingsWindow, 50, 200, 200, 60);
+  modeToggle = new GOption(settingsWindow, 10, 150, 150, 40);
   modeToggle.setText("Open Dark Mode");
   modeToggle.setSelected(mode.isDarkMode);
   modeToggle.addEventHandler(this, "modeToggle_changed");
+  
+  
+  inputLabel = new GLabel(settingsWindow, 450, 10, 200, 30, "Enter Password: ");
+  inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  
+  input = new GPassword(settingsWindow, 450, 60, 200, 50);
+  input.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    
+  confirmLabel = new GLabel(settingsWindow, 450, 130, 200, 30, "Confirm Password: ");
+  confirmLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  
+  confirm = new GPassword(settingsWindow, 450, 180, 200, 50);
+  confirm.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    
+  
+  submit = new GButton(settingsWindow, 450, 250, 100, 30, "Submit");
+  submit.addEventHandler(this, "submitPassword2");
+  
+  warning = new GLabel(settingsWindow, 450, 300, 200, 100, "");
   
   setColors2();
   updateFont2();
@@ -227,6 +246,23 @@ public void modeToggle_changed(GOption source, GEvent event) {
   saveUserData();
 }
 
+public void submitPassword2(GButton source, GEvent event) 
+{
+  if (!input.getPassword().equals(confirm.getPassword()))
+  {
+    warning.setText("Passwords don't match. Try again.");
+  }
+  else if (input.getPassword().length() < 3)
+  {
+    warning.setText("Password has to be at least 3 characters in length");
+  }
+  else
+  {
+    warning.setText("Password Sucessfully Set!");
+    password = input.getPassword();
+    storePassword();
+  }
+}
 
 
 // Create all the GUI controls. 
@@ -293,8 +329,6 @@ public void createGUI(){
   settingsButton.setText("Settings");
   settingsButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   settingsButton.addEventHandler(this, "settingsButton_clicked");
-
-  
   
   updateSidebar();
   setColorsMain();
@@ -318,4 +352,4 @@ GOption modeToggle;
 GPassword input;
 GPassword confirm;
 GButton submit;
-GLabel warning;
+GLabel inputLabel, confirmLabel, warning;
