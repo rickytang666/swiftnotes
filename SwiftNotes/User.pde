@@ -72,7 +72,7 @@ void importUserData()
   
   goldCoins = int(lines[0]);
   font = lines[1];
-  fontSize = constrain(int(lines[2]), 5, 25);
+  fontSize = constrain(int(lines[2]), minSize, maxSize);
   mode.setMode(lines[3].equals("true") ? true : false);
 }
 
@@ -220,5 +220,37 @@ void setColorsMain()
 void setColors2()
 {
   modeToggle.setLocalColor(2, mode.foreground);
+  
+}
+
+
+void updateFontMain()
+{
+  globalFont = new Font("Arial", Font.PLAIN, fontSize);
+
+  sidebarPanel.setFont(globalFont);
+  textfield1.setFont(globalFont);
+  textarea1.setFont(globalFont);
+  
+  for (GButton button : noteButtons)
+  {
+    button.setFont(globalFont);
+  }
+
+  for (GButton button : delButtons)
+  {
+    button.setFont(globalFont);
+  }
+
+  
+}
+
+
+void updateFont2()
+{
+  globalFont = new Font("Arial", Font.PLAIN, fontSize);
+
+  modeToggle.setFont(globalFont);
+
   
 }

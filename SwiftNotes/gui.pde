@@ -173,20 +173,21 @@ public void openSettingsWindow() {
   settingsWindow.setActionOnClose(G4P.CLOSE_WINDOW);
 
   
-  fontSizeSlider = new GCustomSlider(settingsWindow, 50, 50, 200, 40);
-  fontSizeSlider.setLimits(fontSize, 5, 25);
+  fontSizeSlider = new GCustomSlider(settingsWindow, 50, 50, 200, 80);
+  fontSizeSlider.setLimits(fontSize, minSize, maxSize);
   fontSizeSlider.setNumberFormat(G4P.INTEGER, 0);
   fontSizeSlider.addEventHandler(this, "fontSizeSlider_dragged");
   fontSizeSlider.setShowLimits(true);
   fontSizeSlider.setNbrTicks(10);
   fontSizeSlider.setOpaque(true);
   
-  modeToggle = new GOption(settingsWindow, 50, 100, 200, 40);
+  modeToggle = new GOption(settingsWindow, 50, 200, 200, 60);
   modeToggle.setText("Open Dark Mode");
   modeToggle.setSelected(mode.isDarkMode);
   modeToggle.addEventHandler(this, "modeToggle_changed");
   
   setColors2();
+  updateFont2();
 }
 
 
@@ -203,6 +204,8 @@ public void settingsWindow_close(GWindow window) {
 public void fontSizeSlider_dragged(GCustomSlider source, GEvent event) {
   fontSize = source.getValueI();
   
+  updateFontMain();
+  updateFont2();
   saveUserData();
 }
 
@@ -285,6 +288,7 @@ public void createGUI(){
   
   updateSidebar();
   setColorsMain();
+  updateFontMain();
 }
 
 // Variable declarations 
