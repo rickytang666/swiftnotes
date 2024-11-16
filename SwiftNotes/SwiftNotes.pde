@@ -21,14 +21,19 @@ char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '
 
 final String noteStoragePath = "NoteStorage.txt";
 final String userStoragePath = "UserInfo.txt";
+final String passwordStoragePath = "Password.txt";
 final String separate = "||||||||||";
 final int maxSize = 20;
 final int minSize = 10;
 int goldCoins = 0;
 int fontSize = 5;
-String font = "none";
+String font = "Arial";
 Mode mode = new Mode();
+
 String password;
+Boolean authenticated = false;
+Boolean firstTime = true;
+
 ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
 Font globalFont = new Font("Arial", Font.PLAIN, fontSize);
@@ -40,11 +45,12 @@ int scrolledDist = 0;
 
 void setup()
 {
-  size(1000, 700);
-  importNotes();
-  importUserData();
   
-  createGUI();
+  size(1000, 700);
+  
+  importPassword();
+  
+  showAuthenticationScreen();
       
 }
 
@@ -52,12 +58,31 @@ void setup()
 
 void draw()
 {
+  if (!authenticated)
+    background(200, 200, 200);
+  else
     background(mode.background);
 }
 
 
 void exit()
 {
-  saveNotes();
+  
+  if (authenticated)
+  {
+    saveNotes();
+    saveUserData();
+    storePassword();
+  }
+}
+
+
+void startApp()
+{
+  importUserData();
+  importNotes();
+  
   saveUserData();
+  saveNotes();
+  createGUI();
 }

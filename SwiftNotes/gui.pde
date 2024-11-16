@@ -314,3 +314,8 @@ GButton settingsButton;
 GWindow settingsWindow;
 GCustomSlider fontSizeSlider;
 GOption modeToggle;
+
+GPassword input;
+GPassword confirm;
+GButton submit;
+GLabel warning;

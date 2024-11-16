@@ -49,7 +49,7 @@ void importNotes()
   }
   
   if (notes.isEmpty())
-    println("monkey");
+    println("The notes are empty");
   else
   {
     currentNote = notes.get(0);
@@ -76,10 +76,31 @@ void importUserData()
 {
   String[] lines = loadStrings(userStoragePath);
   
+  if (lines == null)
+  {
+    return;
+  }
+  
   goldCoins = int(lines[0]);
   font = lines[1];
   fontSize = constrain(int(lines[2]), minSize, maxSize);
   mode.setMode(lines[3].equals("true") ? true : false);
+}
+
+
+void importPassword()
+{
+  String[] lines = loadStrings(passwordStoragePath);
+  
+  if (lines == null || lines.length < 1 || lines[0].length() < 3)
+  {
+    firstTime = true;
+  }
+  else
+  {
+    firstTime = false;
+    password = lines[0];
+  }
 }
 
 
@@ -91,6 +112,18 @@ void saveUserData()
   pw.println(font);
   pw.println(fontSize);
   pw.println((mode.isDarkMode) ? "true" : "false");
+  pw.println(password);
+  
+  pw.flush();
+  pw.close();
+}
+
+
+void storePassword()
+{
+  PrintWriter pw = createWriter(passwordStoragePath);
+  
+  pw.println(password);
   
   pw.flush();
   pw.close();
