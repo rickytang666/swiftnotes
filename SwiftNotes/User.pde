@@ -58,11 +58,17 @@ void importNotes()
 
 
 void updateGoldCoins() {
+  
+  int num = 0;
+  
   for(int i = 0; i < notes.size(); i++){
     Note x = notes.get(i);
     x.updateWordNum();
-    goldCoins = floor(x.wordNum / 5);
+    num += x.wordNum;
+    
   }
+  
+  goldCoins = floor(num / 5);
 }
 
 
@@ -177,6 +183,7 @@ void updateSidebar()
     noteBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     noteBtn.addEventHandler(this, "noteButton_clicked");
     noteBtn.setVisible(visible);
+    noteBtn.setFont(globalFont);
     noteButtons.add(noteBtn);
 
     GButton delBtn = new GButton(this, 170, yPos, 20, buttonHeight - 10);

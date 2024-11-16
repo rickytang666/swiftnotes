@@ -22,6 +22,7 @@ public void textarea1_changed(GTextArea source, GEvent event) { //_CODE_:textare
   
   saveNotes();
   updateGoldCoins();
+  saveUserData();
 } //_CODE_:textarea1:266170:
 
 
@@ -202,11 +203,20 @@ public void settingsWindow_close(GWindow window) {
 }
 
 public void fontSizeSlider_dragged(GCustomSlider source, GEvent event) {
-  fontSize = source.getValueI();
   
-  updateFontMain();
-  updateFont2();
-  saveUserData();
+  try
+  {
+    fontSize = source.getValueI();
+  
+    updateFontMain();
+    updateFont2();
+    saveUserData();
+  }
+  catch (Exception e)
+  {
+    println("uhhh");
+  }
+  
 }
 
 public void modeToggle_changed(GOption source, GEvent event) {
