@@ -10,6 +10,7 @@
 // Importing Packages
 
 import g4p_controls.*;
+import java.util.*;
 import java.awt.Font;
 
 // Global Variables or Contants
@@ -17,6 +18,9 @@ import java.awt.Font;
 char[] punctuation = {',', '.', ':', ';', '!', '?', '\'', '\"', '(', ')', '-', '_',
  '[', ']', '{', '}', '/', '\\', '|', '&', '*', '@', '#', '$',
   '%', '^', '~', '`', '+', '=', '<', '>', '\n', '\t'};
+
+
+String[] fonts = {"Arial", "Consolas", "Comic Sans MS", "Inter", "Times New Roman"};
 
 
 final String noteStoragePath = "NoteStorage.txt";
@@ -36,7 +40,7 @@ Boolean firstTime = true;
 
 ArrayList<Note> notes = new ArrayList<Note>();
 Note currentNote;
-Font globalFont = new Font("Arial", Font.PLAIN, fontSize);
+Font globalFont = new Font(font, Font.PLAIN, fontSize);
 
 final int buttonsUpBound = 40;
 final int buttonHeight = 40;

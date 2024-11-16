@@ -261,12 +261,25 @@ void setColors2()
 {
   modeToggle.setLocalColor(2, mode.foreground);
   
+  input.setLocalColor(7, mode.textBG);
+  input.setLocalColor(12, mode.foreground);
+  input.setLocalColor(2, mode.foreground);
+  
+  confirm.setLocalColor(7, mode.textBG);
+  confirm.setLocalColor(12, mode.foreground);
+  confirm.setLocalColor(2, mode.foreground);
+  
+  
+  inputLabel.setLocalColor(2, mode.foreground);
+  confirmLabel.setLocalColor(2, mode.foreground);
+  warning.setLocalColor(2, mode.foreground);
+  
 }
 
 
 void updateFontMain()
 {
-  globalFont = new Font("Arial", Font.PLAIN, fontSize);
+  globalFont = new Font(font, Font.PLAIN, fontSize);
 
   sidebarPanel.setFont(globalFont);
   textfield1.setFont(globalFont);
@@ -288,9 +301,15 @@ void updateFontMain()
 
 void updateFont2()
 {
-  globalFont = new Font("Arial", Font.PLAIN, fontSize);
+  globalFont = new Font(font, Font.PLAIN, fontSize);
 
   modeToggle.setFont(globalFont);
+  fontDropList.setFont(globalFont);
+  input.setFont(globalFont);
+  confirm.setFont(globalFont);
+  inputLabel.setFont(globalFont);
+  confirmLabel.setFont(globalFont);
+  warning.setFont(globalFont);
 
   
 }
