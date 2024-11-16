@@ -192,7 +192,7 @@ public void openSettingsWindow() {
   fontDropList.setItems(fonts, temp.indexOf(font));
   fontDropList.addEventHandler(this, "fontDropList_clicked");
   
-  inputLabel = new GLabel(settingsWindow, 450, 10, 200, 30, "Enter Password: ");
+  inputLabel = new GLabel(settingsWindow, 450, 10, 200, 30, "Enter New Password: ");
   inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   
   input = new GPassword(settingsWindow, 450, 60, 200, 50);

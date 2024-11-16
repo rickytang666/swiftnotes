@@ -57,7 +57,7 @@ public void submitPassword1(GButton source, GEvent event)
     {
       authenticated = true;
       password = input.getPassword();
-      storePassword();
+      
     }
   }
   else

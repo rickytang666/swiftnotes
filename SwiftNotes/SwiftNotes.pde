@@ -88,5 +88,6 @@ void startApp()
   
   saveUserData();
   saveNotes();
+  storePassword();
   createGUI();
 }
