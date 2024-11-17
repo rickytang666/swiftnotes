@@ -46,7 +46,8 @@ public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textf
     if (event == GEvent.CHANGED && currentNote != null)
     {
       currentNote.title = textfield1.getText();
-      noteButtons.get(notes.indexOf(currentNote)).setText(textfield1.getText());
+      String str = currentNote.title.length() > 25 ? currentNote.title.substring(0, 23) + "..." : currentNote.title;
+      noteButtons.get(notes.indexOf(currentNote)).setText(str);
       saveNotes();
     }
   }
@@ -291,7 +292,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.ORANGE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("SwiftNotes App");
-  textarea1 = new GTextArea(this, 270, buttonsUpBound + 80, 650, 500, G4P.SCROLLBARS_BOTH);
+  textarea1 = new GTextArea(this, sidebarWidth + 10, buttonsUpBound + 80, 650, 500, G4P.SCROLLBARS_BOTH);
   textarea1.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   textarea1.setOpaque(true);
   textarea1.addEventHandler(this, "textarea1_changed");
@@ -301,7 +302,7 @@ public void createGUI(){
   addButton = new GImageButton(this, 90, 30, 60, 60, new String[]{"Add Button.png"});
   addButton.addEventHandler(this, "addButton_clicked");
   
-  textfield1 = new GTextField(this, 270, buttonsUpBound, 650, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
+  textfield1 = new GTextField(this, sidebarWidth + 10, buttonsUpBound, 650, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
   textfield1.setOpaque(true);
   textfield1.addEventHandler(this, "textfield1_change1");
   
@@ -333,7 +334,10 @@ public void createGUI(){
   sidebarPanel.setCollapsed(false);
   sidebarPanel.setVisible(true);
   sidebarPanel.setText("Side Bar");
+  sidebarPanel.setCollapsible(false);
   sidebarPanel.setFont(UIFont);
+  sidebarPanel.setLocalColor(2, color(0));
+  sidebarPanel.setTextBold();
   
   sidebarPanel.addControl(addButton);
   sidebarPanel.addControl(scrollUpButton);

@@ -52,7 +52,8 @@ PImage logo;
 final int buttonsUpBound = 100;
 final int paddingDown = 80;
 final int buttonHeight = 40;
-final int sidebarWidth = 250;
+final int sidebarWidth = 300;
+final int buttonWidth = sidebarWidth - 70;
 int scrolledDist = 0;
 
 
