@@ -280,17 +280,7 @@ void setColors2()
 
 void initializeUIFont()
 {
-  try {
-    File fontFile = new File(dataPath("ProductSans-Regular.ttf"));
-    UIFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-    UIFont = UIFont.deriveFont(15f);
-    println("Font loaded successfully.");
-  } 
-  catch (FontFormatException | IOException e) 
-  {
-    e.printStackTrace();
-    println("Error loading font: " + e.getMessage());
-  }
+  UIFont = new Font("Inter", Font.PLAIN, 17);
 }
 
 
