@@ -47,9 +47,12 @@ Note currentNote;
 Font UIFont;
 Font noteFont = new Font(noteFontStr, Font.PLAIN, fontSize);
 
+PImage logo;
+
 final int buttonsUpBound = 100;
 final int paddingDown = 80;
 final int buttonHeight = 40;
+final int sidebarWidth = 250;
 int scrolledDist = 0;
 
 
@@ -57,6 +60,9 @@ void setup()
 {
   
   size(1000, 700);
+  
+  logo = loadImage("SwiftNotes Logo.png");
+  logo.resize(150, 75);
   
   initializeUIFont();
   
@@ -71,9 +77,17 @@ void setup()
 void draw()
 {
   if (!authenticated)
+  {
     background(200, 200, 200);
+    image(logo, (width - logo.width)/2, 5);
+  }
   else
+  {
     background(mode.background);
+    image(logo, ((sidebarWidth + width) - logo.width)/2, 5);
+  }
+    
+  
 }
 
 

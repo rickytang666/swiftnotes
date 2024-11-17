@@ -214,12 +214,13 @@ void updateSidebar()
     GButton noteBtn = new GButton(this, 10, yPos, 150, buttonHeight - 10);
     noteBtn.setText(notes.get(i).title);
     noteBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    noteBtn.setLocalColor(2, color(0));
     noteBtn.addEventHandler(this, "noteButton_clicked");
     noteBtn.setVisible(visible);
     noteBtn.setFont(UIFont);
     noteButtons.add(noteBtn);
 
-    GImageButton delBtn = new GImageButton(this, 170, yPos, buttonHeight - 10, buttonHeight - 10, new String[]{"Delete Button.png"});
+    GImageButton delBtn = new GImageButton(this, 170, yPos, buttonHeight - 10, buttonHeight - 10, new String[]{"Delete Button 1.png", "Delete Button 2.png"});
     delBtn.addEventHandler(this, "delButton_clicked");
     delBtn.setVisible(visible);
     delButtons.add(delBtn);
