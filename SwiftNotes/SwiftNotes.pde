@@ -47,7 +47,8 @@ Note currentNote;
 Font UIFont;
 Font noteFont = new Font(noteFontStr, Font.PLAIN, fontSize);
 
-final int buttonsUpBound = 40;
+final int buttonsUpBound = 100;
+final int paddingDown = 80;
 final int buttonHeight = 40;
 int scrolledDist = 0;
 

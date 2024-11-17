@@ -147,7 +147,7 @@ void scrollDown()
 {
   int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
 
-  if ( maxY > height - buttonHeight) 
+  if ( maxY > height - buttonHeight - paddingDown) 
   {
     scrolledDist -= buttonHeight;
     updateSidebar();
@@ -159,7 +159,7 @@ void scrollBottom()
 {
   int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
 
-  while (maxY > height - buttonHeight)
+  while (maxY > height - buttonHeight - paddingDown)
   {  
     scrolledDist -= buttonHeight;
     maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
@@ -190,7 +190,7 @@ void updateSidebar()
   }
   noteButtons.clear();
 
-  for (GButton button : delButtons) 
+  for (GImageButton button : delButtons) 
   {
     if (button != null)
     {
@@ -207,7 +207,7 @@ void updateSidebar()
     int yPos = buttonsUpBound + scrolledDist + i * buttonHeight;
     Boolean visible = false;
     
-    if (yPos >= buttonsUpBound && yPos <= height - buttonHeight) {
+    if (yPos >= buttonsUpBound && yPos <= height - buttonHeight - paddingDown) {
       visible = true;
     }
     
@@ -219,9 +219,7 @@ void updateSidebar()
     noteBtn.setFont(UIFont);
     noteButtons.add(noteBtn);
 
-    GButton delBtn = new GButton(this, 170, yPos, 20, buttonHeight - 10);
-    delBtn.setText("-");
-    delBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    GImageButton delBtn = new GImageButton(this, 170, yPos, buttonHeight - 10, buttonHeight - 10, new String[]{"Delete Button.png"});
     delBtn.addEventHandler(this, "delButton_clicked");
     delBtn.setVisible(visible);
     delButtons.add(delBtn);
@@ -232,7 +230,7 @@ void updateSidebar()
     sidebarPanel.addControl(button);
   }
 
-  for (GButton button : delButtons) {
+  for (GImageButton button : delButtons) {
     sidebarPanel.addControl(button);
   }
 }
