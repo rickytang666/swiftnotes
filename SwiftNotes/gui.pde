@@ -153,7 +153,7 @@ public void settingsButton_clicked(GImageButton source, GEvent event) {
   }
   else
   {
-    println("what");
+    println("settings window already exist");
   }
 }
 
