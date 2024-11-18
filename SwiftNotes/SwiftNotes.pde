@@ -15,6 +15,7 @@ import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 import java.awt.FontFormatException;
+import java.lang.NullPointerException;
 
 
 // Global Variables or Contants
@@ -47,8 +48,13 @@ Note currentNote;
 Font UIFont;
 Font noteFont = new Font(noteFontStr, Font.PLAIN, fontSize);
 
-final int buttonsUpBound = 40;
+PImage logo;
+
+final int buttonsUpBound = 100;
+final int paddingDown = 80;
 final int buttonHeight = 40;
+final int sidebarWidth = 300;
+final int buttonWidth = sidebarWidth - 70;
 int scrolledDist = 0;
 
 
@@ -56,6 +62,9 @@ void setup()
 {
   
   size(1000, 700);
+  
+  logo = loadImage("SwiftNotes Logo.png");
+  logo.resize(150, 75);
   
   initializeUIFont();
   
@@ -70,9 +79,17 @@ void setup()
 void draw()
 {
   if (!authenticated)
+  {
     background(200, 200, 200);
+    image(logo, (width - logo.width)/2, 5);
+  }
   else
+  {
     background(mode.background);
+    image(logo, ((sidebarWidth + width) - logo.width)/2, 5);
+  }
+    
+  
 }
 
 

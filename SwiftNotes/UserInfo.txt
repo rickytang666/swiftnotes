@@ -1,5 +1,5 @@
 0
-Comic Sans MS
-16
-true
+Inter
+17
+false
 abcde

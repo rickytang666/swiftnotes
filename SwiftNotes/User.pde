@@ -147,7 +147,7 @@ void scrollDown()
 {
   int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
 
-  if ( maxY > height - buttonHeight) 
+  if ( maxY > height - buttonHeight - paddingDown) 
   {
     scrolledDist -= buttonHeight;
     updateSidebar();
@@ -159,7 +159,7 @@ void scrollBottom()
 {
   int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
 
-  while (maxY > height - buttonHeight)
+  while (maxY > height - buttonHeight - paddingDown)
   {  
     scrolledDist -= buttonHeight;
     maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
@@ -190,7 +190,7 @@ void updateSidebar()
   }
   noteButtons.clear();
 
-  for (GButton button : delButtons) 
+  for (GImageButton button : delButtons) 
   {
     if (button != null)
     {
@@ -207,21 +207,22 @@ void updateSidebar()
     int yPos = buttonsUpBound + scrolledDist + i * buttonHeight;
     Boolean visible = false;
     
-    if (yPos >= buttonsUpBound && yPos <= height - buttonHeight) {
+    if (yPos >= buttonsUpBound && yPos <= height - buttonHeight - paddingDown) {
       visible = true;
     }
     
-    GButton noteBtn = new GButton(this, 10, yPos, 150, buttonHeight - 10);
-    noteBtn.setText(notes.get(i).title);
+    GButton noteBtn = new GButton(this, 10, yPos, buttonWidth, buttonHeight - 10);
+    
+    String str = notes.get(i).title.length() > 25 ? notes.get(i).title.substring(0, 23) + "..." : notes.get(i).title;
+    noteBtn.setText(str);
     noteBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    noteBtn.setLocalColor(2, color(0));
     noteBtn.addEventHandler(this, "noteButton_clicked");
     noteBtn.setVisible(visible);
     noteBtn.setFont(UIFont);
     noteButtons.add(noteBtn);
 
-    GButton delBtn = new GButton(this, 170, yPos, 20, buttonHeight - 10);
-    delBtn.setText("-");
-    delBtn.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    GImageButton delBtn = new GImageButton(this, buttonWidth + 20, yPos, buttonHeight - 10, buttonHeight - 10, new String[]{"Delete Button 1.png", "Delete Button 2.png"});
     delBtn.addEventHandler(this, "delButton_clicked");
     delBtn.setVisible(visible);
     delButtons.add(delBtn);
@@ -232,7 +233,7 @@ void updateSidebar()
     sidebarPanel.addControl(button);
   }
 
-  for (GButton button : delButtons) {
+  for (GImageButton button : delButtons) {
     sidebarPanel.addControl(button);
   }
 }
@@ -279,17 +280,7 @@ void setColors2()
 
 void initializeUIFont()
 {
-  try {
-    File fontFile = new File(dataPath("ProductSans-Regular.ttf"));
-    UIFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-    UIFont = UIFont.deriveFont(15f);
-    println("Font loaded successfully.");
-  } 
-  catch (FontFormatException | IOException e) 
-  {
-    e.printStackTrace();
-    println("Error loading font: " + e.getMessage());
-  }
+  UIFont = new Font("Inter", Font.PLAIN, 17);
 }
 
 

@@ -26,7 +26,7 @@ public void textarea1_changed(GTextArea source, GEvent event) { //_CODE_:textare
 } //_CODE_:textarea1:266170:
 
 
-public void addButton_clicked(GButton source, GEvent event) { //_CODE_:addButton:563243:
+public void addButton_clicked(GImageButton source, GEvent event) { //_CODE_:addButton:563243:
 
   createNote(generateUniqueTitle());
   textarea1.setVisible(true);
@@ -46,7 +46,8 @@ public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textf
     if (event == GEvent.CHANGED && currentNote != null)
     {
       currentNote.title = textfield1.getText();
-      noteButtons.get(notes.indexOf(currentNote)).setText(textfield1.getText());
+      String str = currentNote.title.length() > 25 ? currentNote.title.substring(0, 23) + "..." : currentNote.title;
+      noteButtons.get(notes.indexOf(currentNote)).setText(str);
       saveNotes();
     }
   }
@@ -75,7 +76,7 @@ public void noteButton_clicked(GButton source, GEvent event)
   }
 }
 
-public void delButton_clicked(GButton source, GEvent event) 
+public void delButton_clicked(GImageButton source, GEvent event) 
 {
   int index = delButtons.indexOf(source);
 
@@ -125,34 +126,34 @@ public void delButton_clicked(GButton source, GEvent event)
   }
 }
 
-public void scrollUpButton_clicked(GButton source, GEvent event)
+public void scrollUpButton_clicked(GImageButton source, GEvent event)
 {
   scrollUp();
 }
 
-public void scrollDownButton_clicked(GButton source, GEvent event)
+public void scrollDownButton_clicked(GImageButton source, GEvent event)
 {
   scrollDown();
 }
 
-public void scrollTopButton_clicked(GButton source, GEvent event)
+public void scrollTopButton_clicked(GImageButton source, GEvent event)
 {
   scrollTop();
 }
 
-public void scrollBottomButton_clicked(GButton source, GEvent event)
+public void scrollBottomButton_clicked(GImageButton source, GEvent event)
 {
   scrollBottom();
 }
 
-public void settingsButton_clicked(GButton source, GEvent event) {
+public void settingsButton_clicked(GImageButton source, GEvent event) {
   if (settingsWindow == null) 
   {
     openSettingsWindow();
   }
   else
   {
-    println("what");
+    println("settings window already exist");
   }
 }
 
@@ -193,6 +194,8 @@ public void openSettingsWindow() {
   ArrayList<String> temp = new ArrayList<String>(Arrays.asList(fonts));
   fontDropList.setItems(fonts, temp.indexOf(noteFontStr));
   fontDropList.addEventHandler(this, "fontDropList_clicked");
+  fontDropList.setLocalColor(3, color(0));
+  fontDropList.setLocalColor(15, color(0, 0, 255));
   fontDropList.setFont(UIFont);
   
   inputLabel = new GLabel(settingsWindow, 450, 10, 200, 30, "Enter New Password: ");
@@ -289,20 +292,17 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.ORANGE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("SwiftNotes App");
-  textarea1 = new GTextArea(this, 280, 130, 600, 500, G4P.SCROLLBARS_BOTH);
+  textarea1 = new GTextArea(this, sidebarWidth + 10, buttonsUpBound + 80, 650, 500, G4P.SCROLLBARS_BOTH);
   textarea1.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   textarea1.setOpaque(true);
   textarea1.addEventHandler(this, "textarea1_changed");
   textarea1.setText("");
   textarea1.setVisible(false);
   
-  addButton = new GButton(this, 515, 10, 80, 30);
-  addButton.setText("Add Note");
-  addButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  addButton = new GImageButton(this, 90, 30, 60, 60, new String[]{"Add Button.png"});
   addButton.addEventHandler(this, "addButton_clicked");
-  addButton.setFont(UIFont);
   
-  textfield1 = new GTextField(this, 280, 70, 600, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
+  textfield1 = new GTextField(this, sidebarWidth + 10, buttonsUpBound, 650, 50, G4P.SCROLLBARS_HORIZONTAL_ONLY);
   textfield1.setOpaque(true);
   textfield1.addEventHandler(this, "textfield1_change1");
   
@@ -315,43 +315,38 @@ public void createGUI(){
       textfield1.setVisible(false);
       textarea1.setVisible(false);
   }
-
   
-  sidebarPanel = new GPanel(this, 0, 0, 200, height);
+  scrollUpButton = new GImageButton(this, 10, 30, 60, 60, new String[]{"Scroll Up Button.png"});
+  scrollUpButton.addEventHandler(this, "scrollUpButton_clicked");
+  
+  scrollDownButton = new GImageButton(this, 10, 620, 60, 60, new String[]{"Scroll Down Button.png"});
+  scrollDownButton.addEventHandler(this, "scrollDownButton_clicked");
+  
+  scrollTopButton = new GImageButton(this, 170, 30, 60, 60, new String[]{"Scroll Top Button.png"});
+  scrollTopButton.addEventHandler(this, "scrollTopButton_clicked");
+  
+  scrollBottomButton = new GImageButton(this, 170, 620, 60, 60, new String[]{"Scroll Bottom Button.png"});
+  scrollBottomButton.addEventHandler(this, "scrollBottomButton_clicked");
+  
+  sidebarPanel = new GPanel(this, 0, 0, sidebarWidth, height);
   sidebarPanel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   sidebarPanel.setOpaque(true);
   sidebarPanel.setCollapsed(false);
   sidebarPanel.setVisible(true);
+  sidebarPanel.setText("Side Bar");
+  sidebarPanel.setCollapsible(false);
   sidebarPanel.setFont(UIFont);
+  sidebarPanel.setLocalColor(2, color(0));
+  sidebarPanel.setTextBold();
   
-  scrollUpButton = new GButton(this, 210, 50, 40, 30);
-  scrollUpButton.setText("Up");
-  scrollUpButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  scrollUpButton.addEventHandler(this, "scrollUpButton_clicked");
-  scrollUpButton.setFont(UIFont);
-  
-  scrollDownButton = new GButton(this, 210, 600, 40, 30);
-  scrollDownButton.setText("Down");
-  scrollDownButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  scrollDownButton.addEventHandler(this, "scrollDownButton_clicked");
-  
-  scrollTopButton = new GButton(this, 210, 10, 40, 30);
-  scrollTopButton.setText("Top");
-  scrollTopButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  scrollTopButton.addEventHandler(this, "scrollTopButton_clicked");
-  scrollTopButton.setFont(UIFont);
-  
-  scrollBottomButton = new GButton(this, 210, 650, 40, 30);
-  scrollBottomButton.setText("Bottom");
-  scrollBottomButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  scrollBottomButton.addEventHandler(this, "scrollBottomButton_clicked");
-  scrollBottomButton.setFont(UIFont);
+  sidebarPanel.addControl(addButton);
+  sidebarPanel.addControl(scrollUpButton);
+  sidebarPanel.addControl(scrollDownButton);
+  sidebarPanel.addControl(scrollTopButton);
+  sidebarPanel.addControl(scrollBottomButton);
 
-  settingsButton = new GButton(this, width - 100, 10, 90, 30);
-  settingsButton.setText("Settings");
-  settingsButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  settingsButton = new GImageButton(this, width - 80, 10, 60, 60, new String[]{"Settings Button.png"});
   settingsButton.addEventHandler(this, "settingsButton_clicked");
-  settingsButton.setFont(UIFont);
   
   updateSidebar();
   setColorsMain();
@@ -362,12 +357,12 @@ public void createGUI(){
 // autogenerated do not edit
 GTextArea textarea1; 
 GPanel sidebarPanel; 
-GButton addButton;
+GImageButton addButton;
 GTextField textfield1;
 ArrayList<GButton> noteButtons = new ArrayList<GButton>();
-ArrayList<GButton> delButtons = new ArrayList<GButton>();
-GButton scrollUpButton, scrollDownButton, scrollTopButton, scrollBottomButton;
-GButton settingsButton;
+ArrayList<GImageButton> delButtons = new ArrayList<GImageButton>();
+GImageButton scrollUpButton, scrollDownButton, scrollTopButton, scrollBottomButton;
+GImageButton settingsButton;
 GWindow settingsWindow;
 GCustomSlider fontSizeSlider;
 GOption modeToggle;
