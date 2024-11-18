@@ -8,7 +8,7 @@ void setNewPassword(String newPass)
 void showAuthenticationScreen() 
 {
   
-  input = new GPassword(this, 200, height / 2 - 100, 200, 50);
+  input = new GPassword(this, 200, height / 2 - 80, 200, 30);
   input.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   
   inputLabel = new GLabel(this, 50, height / 2 - 100, 100, 50, "Enter Password: ");
