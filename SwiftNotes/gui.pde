@@ -159,7 +159,7 @@ public void settingsButton_clicked(GImageButton source, GEvent event) {
 
 public void openSettingsWindow() {
   // Create the secondary window
-  settingsWindow = GWindow.getWindow(this, "Settings", 300, 300, 700, 400, JAVA2D);
+  settingsWindow = GWindow.getWindow(this, "Settings", 300, 300, 700, 350, JAVA2D);
   settingsWindow.addDrawHandler(this, "settingsWindow_draw");
   settingsWindow.addOnCloseHandler(this, "settingsWindow_close");
 
@@ -173,7 +173,10 @@ public void openSettingsWindow() {
   */
   
   settingsWindow.setActionOnClose(G4P.CLOSE_WINDOW);
-
+  
+  fontSizeLabel = new GLabel(settingsWindow, 10, 10, 150, 30, "Adjust Text Size");
+  fontSizeLabel.setFont(UIFont);
+  fontSizeLabel.setLocalColor(2, mode.foreground);
   
   fontSizeSlider = new GCustomSlider(settingsWindow, 10, 50, 150, 60);
   fontSizeSlider.setLimits(fontSize, minSize, maxSize);
@@ -189,6 +192,11 @@ public void openSettingsWindow() {
   modeToggle.addEventHandler(this, "modeToggle_changed");
   modeToggle.setFont(UIFont);
   
+  fontSelect = new GLabel(settingsWindow, 200, 10, 200, 30, "Select Font");
+  fontSelect.setFont(UIFont);
+  fontSelect.setLocalColor(2, mode.foreground);
+  
+  
   fontDropList = new GDropList(settingsWindow, 200, 50, 200, 200, 4, 20);
   fontDropList.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   ArrayList<String> temp = new ArrayList<String>(Arrays.asList(fonts));
@@ -198,28 +206,32 @@ public void openSettingsWindow() {
   fontDropList.setLocalColor(15, color(0, 0, 255));
   fontDropList.setFont(UIFont);
   
-  inputLabel = new GLabel(settingsWindow, 450, 10, 200, 30, "Enter New Password: ");
+  resetPass = new GLabel(settingsWindow, 450, 10, 200, 30, "Reset Password");
+  resetPass.setFont(UIFont);
+  resetPass.setLocalColor(2, mode.foreground);
+  
+  inputLabel = new GLabel(settingsWindow, 450, 40, 200, 30, "Enter New Password: ");
   inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   inputLabel.setFont(UIFont);
   
-  input = new GPassword(settingsWindow, 450, 60, 200, 50);
+  input = new GPassword(settingsWindow, 450, 90, 200, 50);
   input.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   input.setFont(UIFont);
     
-  confirmLabel = new GLabel(settingsWindow, 450, 130, 200, 30, "Confirm Password: ");
+  confirmLabel = new GLabel(settingsWindow, 450, 160, 200, 30, "Confirm Password: ");
   confirmLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   confirmLabel.setFont(UIFont);
   
-  confirm = new GPassword(settingsWindow, 450, 180, 200, 50);
+  confirm = new GPassword(settingsWindow, 450, 210, 200, 50);
   confirm.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   confirm.setFont(UIFont);
     
   
-  submit = new GButton(settingsWindow, 450, 250, 100, 30, "Submit");
+  submit = new GButton(settingsWindow, 450, 280, 100, 30, "Submit");
   submit.addEventHandler(this, "submitPassword2");
   submit.setFont(UIFont);
   
-  warning = new GLabel(settingsWindow, 450, 300, 200, 100, "");
+  warning = new GLabel(settingsWindow, 450, 330, 200, 100, "");
   
   setColors2();
 }
@@ -364,6 +376,9 @@ ArrayList<GImageButton> delButtons = new ArrayList<GImageButton>();
 GImageButton scrollUpButton, scrollDownButton, scrollTopButton, scrollBottomButton;
 GImageButton settingsButton;
 GWindow settingsWindow;
+GLabel fontSizeLabel;
+GLabel fontSelect;
+GLabel resetPass;
 GCustomSlider fontSizeSlider;
 GOption modeToggle;
 GDropList fontDropList;

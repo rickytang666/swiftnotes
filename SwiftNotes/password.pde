@@ -8,10 +8,10 @@ void setNewPassword(String newPass)
 void showAuthenticationScreen() 
 {
   
-  input = new GPassword(this, 200, height / 2 - 80, 200, 30);
+  input = new GPassword(this, 405, height / 2 - 80, 200, 30);
   input.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   
-  inputLabel = new GLabel(this, 50, height / 2 - 100, 100, 50, "Enter Password: ");
+  inputLabel = new GLabel(this, 440, 322 - 100, 200, 50, "Enter Password: ");
   inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   inputLabel.setFont(UIFont);
   
@@ -27,7 +27,7 @@ void showAuthenticationScreen()
     confirmLabel.setFont(UIFont);
   }
   
-  submit = new GButton(this, 200, height / 2 + 80, 100, 30, "Submit");
+  submit = new GButton(this, 450, height / 2 + 80, 100, 30, "Submit");
   submit.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   submit.addEventHandler(this, "submitPassword1");
   submit.setFont(UIFont);
