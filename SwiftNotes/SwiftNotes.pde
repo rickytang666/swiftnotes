@@ -34,6 +34,7 @@ final String passwordStoragePath = "Password.txt";
 final String separate = "||||||||||";
 final int maxSize = 20;
 final int minSize = 10;
+PImage coin;
 int goldCoins = 0;
 int fontSize = 5;
 String noteFontStr = "Arial";
@@ -65,6 +66,8 @@ void setup()
   
   logo = loadImage("SwiftNotes Logo.png");
   logo.resize(150, 75);
+  coin = loadImage("Gold Coin.png");
+  coin.resize(75,60);
   
   initializeUIFont();
   
@@ -87,8 +90,10 @@ void draw()
   {
     background(mode.background);
     image(logo, ((sidebarWidth + width) - logo.width)/2, 5);
+    image(coin, 350, 20);
+    textSize(40);
+    text("x" + str(goldCoins), 420, 60);
   }
-    
   
 }
 
