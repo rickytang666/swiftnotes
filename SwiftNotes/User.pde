@@ -43,6 +43,7 @@ void importNotes()
       Note note = new Note(title);
       note.createdTime = time;
       note.text = content;
+      note.updateWordNum();
 
       notes.add(note);
     }
