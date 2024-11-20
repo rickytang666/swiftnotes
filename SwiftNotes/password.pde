@@ -32,7 +32,7 @@ void showAuthenticationScreen()
   submit.addEventHandler(this, "submitPassword1");
   submit.setFont(UIFont);
   
-  warning = new GLabel(this, 200, height / 2 + 150, 300, 50, "");
+  warning = new GLabel(this, 430, height / 2 + 150, 300, 50, "");
   warning.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   warning.setFont(UIFont);
   
