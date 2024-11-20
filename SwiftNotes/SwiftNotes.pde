@@ -91,8 +91,9 @@ void draw()
     background(mode.background);
     image(logo, ((sidebarWidth + width) - logo.width)/2, 5);
     image(coin, 350, 20);
+    fill(mode.foreground);
     textSize(40);
-    text("x" + str(goldCoins), 420, 60);
+    text("\u00D7 " + str(goldCoins), 420, 60);
   }
   
 }
