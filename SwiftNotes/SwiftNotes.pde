@@ -36,7 +36,7 @@ final int maxSize = 20;
 final int minSize = 10;
 PImage coin;
 int goldCoins = 0;
-int fontSize = 5;
+int fontSize = 12;
 String noteFontStr = "Arial";
 Mode mode = new Mode();
 String password;
@@ -120,8 +120,10 @@ void exit()
 void startApp()
 {
   //import user data and notes
-  importUserData();
-  importNotes();
+  if(!firstTime) {
+    importUserData();
+    importNotes();
+  }
   //save the notes, user data, and password set, and creates the GUI
   saveUserData();
   saveNotes();

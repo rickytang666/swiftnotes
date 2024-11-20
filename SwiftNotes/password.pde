@@ -1,10 +1,12 @@
 // this file is for functions for passwords
 
+//Creates and sets a new password
 void setNewPassword(String newPass) 
 {
   password = newPass;
 }
 
+//Displays the authentication screen before the main program
 void showAuthenticationScreen() 
 {
   
@@ -19,10 +21,10 @@ void showAuthenticationScreen()
   {
     println("First time user, needs to confirm password");
     
-    confirm = new GPassword(this, 200, height/2 - 50, 200, 50);
+    confirm = new GPassword(this, 405, height/2 - 10, 200, 30);
     confirm.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     
-    confirmLabel = new GLabel(this, 50, height / 2 - 50, 100, 50, "Confirm Password: ");
+    confirmLabel = new GLabel(this, 430, 300, 200, 30, "Confirm Password: ");
     confirmLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     confirmLabel.setFont(UIFont);
   }
@@ -38,6 +40,7 @@ void showAuthenticationScreen()
   
 }
 
+//Used to submit the password that the user has entered to check if its true or false
 public void submitPassword1(GButton source, GEvent event) 
 {
   

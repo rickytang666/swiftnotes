@@ -1,13 +1,15 @@
 class Mode 
 {
+  //Fields
   Boolean isDarkMode;
   color foreground;
   color background;
   color panelBG;
   color textBG;
 
-  Mode()
+  Mode() //Constructor
   {
+    //Checks whether dark mode is on or off
     this.isDarkMode = false;
 
     this.foreground = color(46, 51, 56);
@@ -15,7 +17,8 @@ class Mode
     this.panelBG = color(242, 243, 245);
     this.textBG = color(248, 249, 249);
   }
-
+  
+  //Sets the mode to dark mode depending on the boolean DarkMode
   void setMode(Boolean darkmode)
   {
     this.isDarkMode = darkmode;

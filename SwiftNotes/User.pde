@@ -1,5 +1,6 @@
 // This file is for the functions of a user
 
+//Creates a new note tab everytime the user adds one
 void createNote(String title) 
 {
     Note n = new Note(title);
@@ -9,7 +10,7 @@ void createNote(String title)
     saveNotes();
 }
 
-
+//Autosaves the user's notes to ensure the user doesn't lose them
 void saveNotes() 
 {
   PrintWriter pw = createWriter(noteStoragePath);
@@ -28,7 +29,7 @@ void saveNotes()
   //println("saved");
 }
 
-
+//Loads the notes that the user has saved after opening the program
 void importNotes()
 {
   String[] lines = loadStrings(noteStoragePath);
@@ -57,7 +58,7 @@ void importNotes()
   }
 }
 
-
+//Updates the amount of gold coins that the user has received
 void updateGoldCoins() {
   
   int num = 0;
@@ -72,7 +73,7 @@ void updateGoldCoins() {
   goldCoins = floor(num / 5);
 }
 
-
+//Loads the user's previously set settings (Font, Font size, Dark mode) as well as their gold coins
 void importUserData()
 {
   String[] lines = loadStrings(userStoragePath);
@@ -88,7 +89,7 @@ void importUserData()
   mode.setMode(lines[3].equals("true") ? true : false);
 }
 
-
+//Loads the user's previously set password to use to open the program
 void importPassword()
 {
   String[] lines = loadStrings(passwordStoragePath);
@@ -96,6 +97,8 @@ void importPassword()
   if (lines == null || lines.length < 1 || lines[0].length() < 3)
   {
     firstTime = true;
+    notes.clear();
+    goldCoins = 0;
   }
   else
   {
@@ -104,7 +107,7 @@ void importPassword()
   }
 }
 
-
+//Autosaves the user's settings
 void saveUserData()
 {
   PrintWriter pw = createWriter(userStoragePath);
@@ -119,7 +122,7 @@ void saveUserData()
   pw.close();
 }
 
-
+//Stores the user's new password whenever they set it
 void storePassword()
 {
   PrintWriter pw = createWriter(passwordStoragePath);
@@ -133,7 +136,7 @@ void storePassword()
 
 /*******************************/
 
-
+//Scrolls up the panel
 void scrollUp()
 {
   if (scrolledDist < 0)
@@ -143,7 +146,7 @@ void scrollUp()
   }
 }
 
-
+//Scrolls down the panel
 void scrollDown()
 {
   int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
@@ -155,7 +158,7 @@ void scrollDown()
   }
 }
 
-
+//Scrolls all the way to the bottom of the panel
 void scrollBottom()
 {
   int maxY = buttonsUpBound + scrolledDist + (notes.size() - 1) * buttonHeight;
@@ -170,14 +173,14 @@ void scrollBottom()
 }
 
 
-
+//Scrolls all the way to the top of the panel
 void scrollTop()
 {
   scrolledDist = 0;
   updateSidebar();
 }
 
-
+//Updates the panel to include new or removed note tabs
 void updateSidebar() 
 {
   // Clear previous buttons to avoid duplicates
@@ -240,7 +243,7 @@ void updateSidebar()
 }
 
 
-
+//Sets the primary colour accents of the program
 void setColorsMain()
 {
   
@@ -258,7 +261,7 @@ void setColorsMain()
   
 }
 
-
+//Sets the secondary colour accents of the program
 void setColors2()
 {
   modeToggle.setLocalColor(2, mode.foreground);
@@ -278,13 +281,13 @@ void setColors2()
   
 }
 
-
+//Initializes the main beginner font of the program
 void initializeUIFont()
 {
   UIFont = new Font("Inter", Font.PLAIN, 17);
 }
 
-
+//Updates the fonts that the user has set from the settings menu
 void updateFont()
 {
   noteFont = new Font(noteFontStr, Font.PLAIN, fontSize);
