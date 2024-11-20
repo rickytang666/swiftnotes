@@ -116,7 +116,6 @@ void saveUserData()
   pw.println(noteFontStr);
   pw.println(fontSize);
   pw.println((mode.isDarkMode) ? "true" : "false");
-  pw.println(password);
   
   pw.flush();
   pw.close();

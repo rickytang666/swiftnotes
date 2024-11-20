@@ -227,11 +227,12 @@ public void openSettingsWindow() {
   confirm.setFont(UIFont);
     
   
-  submit = new GButton(settingsWindow, 450, 280, 100, 30, "Submit");
+  submit = new GButton(settingsWindow, 450, 270, 100, 30, "Submit");
   submit.addEventHandler(this, "submitPassword2");
   submit.setFont(UIFont);
   
-  warning = new GLabel(settingsWindow, 450, 330, 200, 100, "");
+  warning = new GLabel(settingsWindow, 450, 300, 200, 50, "");
+  warning.setFont(UIFont);
   
   setColors2();
 }
