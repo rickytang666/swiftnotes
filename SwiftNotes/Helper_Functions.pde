@@ -1,4 +1,4 @@
-
+//Function counts the number of words
 int countWordNum(String input)
 {
     for (char c : punctuation)
@@ -11,17 +11,11 @@ int countWordNum(String input)
     return words.length;
 }
 
-
-
-void clearFile()
-{
-    
-}
-
-
+//Displays the name of the note
 String generateUniqueTitle() 
 {
     int count = 1;
+    //initial title is untitled_
     String baseTitle = "Untitled_";
     String newTitle = baseTitle + str(count);
 
