@@ -387,4 +387,4 @@ GDropList fontDropList;
 GPassword input;
 GPassword confirm;
 GButton submit;
-GLabel inputLabel, confirmLabel, warning;
+GLabel inputLabel, confirmLabel, welcome, createLabel, warning;

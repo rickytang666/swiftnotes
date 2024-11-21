@@ -10,16 +10,20 @@ void setNewPassword(String newPass)
 void showAuthenticationScreen() 
 {
   
+  welcome = new GLabel(this, 460, 100, 200, 100, "Welcome!");
+  welcome.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  welcome.setFont(UIFont);
+  
   input = new GPassword(this, 405, height / 2 - 80, 200, 30);
   input.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  
-  inputLabel = new GLabel(this, 440, 322 - 100, 200, 50, "Enter Password: ");
-  inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
-  inputLabel.setFont(UIFont);
   
   if (firstTime)
   {
     println("First time user, needs to confirm password");
+        
+    createLabel = new GLabel(this, 435, 222, 200, 50, "Create Password: ");
+    createLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    createLabel.setFont(UIFont);
     
     confirm = new GPassword(this, 405, height/2 - 10, 200, 30);
     confirm.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
@@ -27,6 +31,10 @@ void showAuthenticationScreen()
     confirmLabel = new GLabel(this, 430, 300, 200, 30, "Confirm Password: ");
     confirmLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     confirmLabel.setFont(UIFont);
+  } else {
+    inputLabel = new GLabel(this, 440, 222, 200, 50, "Enter Password: ");
+    inputLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+    inputLabel.setFont(UIFont);
   }
   
   submit = new GButton(this, 450, height / 2 + 80, 100, 30, "Submit");
@@ -76,9 +84,14 @@ public void submitPassword1(GButton source, GEvent event)
   if (authenticated) 
   {
     // Cleanup authentication screen
-    input.dispose();
+    welcome.dispose();
     
-    inputLabel.dispose();
+    input.dispose();
+    if (firstTime)
+      createLabel.dispose();
+    
+    if (!firstTime)
+      inputLabel.dispose();
     
     if (confirm != null)
       confirm.dispose();
