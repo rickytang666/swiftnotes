@@ -28,7 +28,7 @@ void showAuthenticationScreen()
     confirm = new GPassword(this, 405, height/2 - 10, 200, 30);
     confirm.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     
-    confirmLabel = new GLabel(this, 430, 300, 200, 30, "Confirm Password: ");
+    confirmLabel = new GLabel(this, 430, 306, 200, 30, "Confirm Password: ");
     confirmLabel.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
     confirmLabel.setFont(UIFont);
   } else {
