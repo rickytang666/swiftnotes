@@ -2,6 +2,7 @@
 /* 
 
     Software Name: SwiftNotes
+    Introduction: SwiftNotes is a all-in-one note-taking app with secure data protection, customization, tabs, and fun rewards for staying productive
     Author: Youssef, Mariam, Ricky
     Date: November 22nd, 2024
 
