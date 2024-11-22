@@ -25,6 +25,7 @@ class Note
     
     void updateWordNum()
     {
+        // call the count word num to update its word number
         this.wordNum = countWordNum(this.text);
     }
 }
