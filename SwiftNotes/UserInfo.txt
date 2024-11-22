@@ -1,4 +1,0 @@
-0
-Consolas
-18
-true
