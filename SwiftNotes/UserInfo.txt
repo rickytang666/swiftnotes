@@ -1,4 +1,4 @@
 0
-Inter
-12
+Consolas
+18
 true
